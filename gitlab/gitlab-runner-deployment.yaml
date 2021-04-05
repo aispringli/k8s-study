@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab-runner
+  namespace: aispring
+  labels:
+    app: gitlab-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitlab-runner
+  template:
+    metadata:
+      labels:
+        app: gitlab-runner
+    spec:
+      containers:
+        - args:
+            - run
+          image: gitlab/gitlab-runner:v13.1.0
+          imagePullPolicy: IfNotPresent
+          name: gitlab-runner
+          volumeMounts:
+            - mountPath: /etc/gitlab-runner
+              name: gitlab-runner-data
+            - mountPath: /var/run/docker.sock
+              name: gitlab-runner-docker
+      restartPolicy: Always
+      volumes:
+        - name: gitlab-runner
+          configMap:
+            name: gitlab-runner
+        - name: gitlab-runner-data
+          hostPath:
+            path: /home/spring/data/k8s/gitlab-runner/data
+        - name: gitlab-runner-docker
+          hostPath:
+            path: /var/run/docker.sock

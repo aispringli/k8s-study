@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+  name: mysql
+  namespace: aispring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      initContainers:
+        - name: mysql-init
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MYSQL_ROOT_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-user-pwd
+                  key: mysql-root-pwd
+          command:
+            - sh
+            - "-c"
+            - |
+              set -ex
+              rm -fr /var/lib/mysql/lost+found
+              cat > /docker-entrypoint-initdb.d/mysql-root-connect.sql <<EOF              
+              grant all on *.* to 'root'@'%' identified by '$MYSQL_ROOT_USER_PASSWORD';
+              flush privileges;
+              EOF
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+      containers:
+        - image: mysql
+          name: mysql
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-user-pwd
+                  key: mysql-root-pwd
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-user-pwd
+                  key: mysql-app-user-pwd
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+            - name: mysql-config
+              mountPath: /etc/mysql/conf.d/
+          ports:
+            - containerPort: 3306
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - "-c"
+                - MYSQL_PWD="${MYSQL_ROOT_PASSWORD}"
+                - mysql -h 127.0.0.1 -u root -e "SELECT 1"
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - "-c"
+                - MYSQL_PWD="${MYSQL_ROOT_PASSWORD}"
+                - mysql -h 127.0.0.1 -u root -e "SELECT 1"
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: mysql-data
+          hostPath:
+            path: /data/k8s/mysql8/data
+        - name: mysql-initdb
+          emptyDir: {}
+        - name: mysql-config
+          configMap:
+            name: mysql-config

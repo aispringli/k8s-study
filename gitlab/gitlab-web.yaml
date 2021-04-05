@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitlab
+  namespace: aispring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "100M"
+spec:
+  tls:
+    - hosts:
+        - git.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
+  rules:
+    - host: git.aispring.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: gitlab
+              servicePort: http
+    - host: git.aispring.cloud

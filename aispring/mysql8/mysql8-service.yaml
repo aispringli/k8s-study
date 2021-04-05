@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mysql
+  name: mysql
+  namespace: aispring
+spec:
+  type: NodePort
+  ports:
+    - port: 3306
+      nodePort: 3006
+      protocol: TCP
+      targetPort: 3306
+  selector:
+    app: mysql

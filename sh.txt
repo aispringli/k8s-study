@@ -1,0 +1,5 @@
+ kubectl create -f pv-nfs.yaml
+
+
+
+ kubectl create configmap redis-conf --from-file redis.conf -o yaml --dry-run | kubectl replace -f -

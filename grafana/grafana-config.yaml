@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: grafana-config
+  name: grafana-config
+  namespace: aispring
+data:
+  grafana.ini: |-
+    app_mode = production
+    instance_name = ${HOSTNAME}
+
+    #################################### Database ############################
+    [database]
+    # You can configure the database connection by specifying type, host, name, user and password
+    # as separate properties or as on string using the url property.
+
+    # Either "mysql", "postgres" or "sqlite3", it's your choice
+    type = mysql
+    host =mysql:3306
+    name = grafana
+    user = grafana
+    password = grafana
+    ssl_mode = false
+
+    [remote_cache]
+    # Either "redis", "memcached" or "database" default is "database"
+    type = redis
+    connstr = `addr=redis:6379,pool_size=100,db=0,ssl=false`
+
+    #################################### Security ############################
+    [security]
+    disable_initial_admin_creation = false
+    admin_user = admin
+    admin_password = admin
+    secret_key = aispring
+
+    [smtp]
+    enabled = false
+    host = localhost:25
+    user =
+    password =
+    cert_file =
+    key_file =
+    skip_verify = false
+    from_address = admin@grafana.localhost
+    from_name = Grafana
+    ehlo_identity =
+    startTLS_policy =
+
+    [emails]
+    welcome_email_on_sign_up = false
+    templates_pattern = emails/*.html

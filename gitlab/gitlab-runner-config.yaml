@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitlab-runner
+  namespace: aispring
+data:
+  config.toml: |
+    concurrent = 5
+
+    [[runners]]
+      name = "Kubernetes Runner"
+      url = "http://git.aispring.cloud/"
+      token = "5QdZATg9B8s2Arsk-RyA"
+      executor = "kubernetes"
+      [runners.kubernetes]
+        namespace = "aispring"
+        image = "busybox"

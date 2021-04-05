@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab
+  namespace: aispring
+  labels:
+    app: gitlab
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: http  
+    - name: ssh
+      port: 22
+      nodePort: 22
+      targetPort: ssh
+  type: NodePort
+  selector:
+    app: gitlab

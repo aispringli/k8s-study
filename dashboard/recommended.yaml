@@ -1,0 +1,318 @@
+# Copyright 2017 The Kubernetes Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubernetes-dashboard
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  type: NodePort
+  ports:
+    - port: 443
+      targetPort: 8443
+      nodePort: 31443
+  selector:
+    k8s-app: kubernetes-dashboard
+
+---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   labels:
+#     k8s-app: kubernetes-dashboard
+#   name: kubernetes-dashboard-certs
+#   namespace: kubernetes-dashboard
+# type: Opaque
+
+# ---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard-certs
+  namespace: kubernetes-dashboard
+data:
+  dashboard.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBMzVINEpLTCtUM1FXZXp0d1NodUZiV0xDaEREalg2WDV1Sk55SkpLak9uS2xrVC9pCnFmVEVqOUpCNnZDNnJHV0F2bmx0RUlEVi9mS1lkL0NnbmU2YndlNnRsUFlzTlRwWFZjSGZMY2lIbnpnbnp0OFYKY3BCMW1LV3oxQjYwbmNoOUJUVlArSWh0V2VXM2lZOHRxeWdYQTkxN3gwODBCR0k1Qi9YdEYxc1VVY2lOYWdxMApSVGh1aThBR3VGYU5ReXI1OEF1elN1TERyaWJQc3VUdG9ybVI5NDVjU0VnTlJVTFNqQ2xqOHZiSm9oeHNESEdrCkZZNk5GK05PbWpoUnR1WjRrMGlxenRTYTV6ZlF0aWhFbVJDS1Z0OE9wSFBRRkV5ckRvem9LSDFzYWNCOXBhL2UKWENTR3hEdml2M040d1lmY2J4VXJVYUQ2VUtOYkVoKzd0aGlMZ3dJREFRQUJBb0lCQVFDdk1aZWVQZ3ZDLzFsTwpvRGxTR1ZicGJPYTQ2QWFGUVc3NjhMQVZjTU53WGI3WW41TmpVMmRrdklMak5GbFVGd1pZUEpiMnc3N3REVm5sClF5N2FFODBDbjZKdWhLb0gyL3ZzTzh4RCtFd3V2TGFWS2NPSXp5TVh4Mkd2NjQvbHhPSVRYcitZSm5CcWJkVHgKZXIxeXppdWEzOGpMV29tTWxkdlRIU2Y1a1duTzJ6N1FVbmZjdXdka1c2Z1p6RnhJUmh1bmF4SVgxRU1jenE3cwpGUEZMaFF3ZVp5bElHbHRWZFZtTEpoUGNQS3V5R3p3VkpuRUh5eCtkZ0hHa3d1Z0w4TndYSWxaMVlwRHVzM3JCCitPSHE2M3EvaTZwNVpvT1NFbEdyOEwyWXlXa1BFVTl0UGhlN1QyOTRDTEoyS0djVm4xQTlTRW9pOTlFbkNTWjcKT21jQ2lISUJBb0dCQVBRWUU5Szc4UXFuOVB4bkk0YWhvUFJaaEJzQldSN2RBL3lMSGNjbmwyTXVsN1JvMmwrQgp1RU1XaFZOb1BiOEtTNTlhWjV2anJBZUoxKy9zMitlRFVKRnBkQkhZdWVGV3hjZ0hHY205M2Z2RkxZU09JWDZHCnJhZUs2aHJDTGpvUElMVkFtYnczSDNPMHc4WXZXM2pTL1d1b2p4alNKNldoTGxLNDNKREg2dy9CQW9HQkFPcDUKbmYyc3JUTUtyZTA5RHZJSDFlUWFOdjR1cXZLWU9IQzRzbkpPd2N4WkFobzZYNFpUTGlDRDNBVGl4WnA3RVkwbApySnNUZnlXK1lIbU1ualhZeHhmTGxlRnhIOXVONlQ1UUt0KzYyVncvVC95Tmw5eWdaUDNtWnlnSkxaY0JRN3NWCktaRzgwa3VYUVMrNjdjMVYrVURyRnZRbmM4Nlpnek9zdmx4MGJteERBb0dCQUk0a2gwYXNrMDExU1VEQ2Z2bWoKbmFzdGhiU0VNSFc4bHRtMTJYMWtITkJ4RFg3Tm9IMEZlVnYzL1dQNHpCdzN6cG5aZDRSY0xJMm5ROHcvemo4ZgpSUWVvdFNLL1psOUd2SjRqSkcxSzE3NEpzTndFT0pVSnNJNWtZcmQ2WkprQ3ZqVk9qVGdCa1pzN3BOWUFOZkJDClRia255MHpVOUttTEZ3S3REQ1J6aHZzQkFvR0FJVkhRK3Joc0VHSEhIM3hhd0ZnT3RCQnBtaXRGalozRi8zYXYKblFER0YyVGFvS0dFNjVDc2NHQnNocUUzRldIQnQ3NFB6aVd5SHNuejZiSHExWm9OaUxzY2ZHSFg5aG92ZC9ScQpjMHFaRXJ2SWdRb1o5M2N2Z3NrWUJaOXdSQklnN3RmdUJWREF6WThiNjAxejk0YnRHYVdPcUhsbXdvZ2NGZDdKCldsZ05UUU1DZ1lCMzFhWGxsWnNyTnBFMU1kTWh4VXJIRHZFNkxpbXEweEppTEQ5UVovN0M4dmE2aHA5b0JFSEoKTzhHY20vSzRWRFEvRFpFY21DTlVDa2M2UUhqcm5NTlNKZW5LOGJXbEFjNGpYODc2eDdDZ0tpRXV5ci84ZkpwNApVb24ya1NTRDd6aTRxeW9WU21GY0hJZ21UZ1NGMXFTU2d5WkRmSHFGZ1ZtWWpiSXBjV2NqK2c9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+  dashboard.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZhVENDQkZHZ0F3SUJBZ0lTQXlpTEJmajRBMURLa3JEcTNFSHF5TDdVTUEwR0NTcUdTSWIzRFFFQkN3VUEKTUVveEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1TTXdJUVlEVlFRRApFeHBNWlhRbmN5QkZibU55ZVhCMElFRjFkR2h2Y21sMGVTQllNekFlRncweU1EQTNNVGt4TVRReU5EZGFGdzB5Ck1ERXdNVGN4TVRReU5EZGFNQnN4R1RBWEJnTlZCQU1NRUNvdVlXbHpjSEpwYm1jdVkyeHZkV1F3Z2dFaU1BMEcKQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURma2Zna292NVBkQlo3TzNCS0c0VnRZc0tFTU9OZgpwZm00azNJa2txTTZjcVdSUCtLcDlNU1Awa0hxOExxc1pZQytlVzBRZ05YOThwaDM4S0NkN3B2QjdxMlU5aXcxCk9sZFZ3ZDh0eUllZk9DZk8zeFZ5a0hXWXBiUFVIclNkeUgwRk5VLzRpRzFaNWJlSmp5MnJLQmNEM1h2SFR6UUUKWWprSDllMFhXeFJSeUkxcUNyUkZPRzZMd0FhNFZvMURLdm53QzdOSzRzT3VKcyt5NU8yaXVaSDNqbHhJU0ExRgpRdEtNS1dQeTlzbWlIR3dNY2FRVmpvMFg0MDZhT0ZHMjVuaVRTS3JPMUpybk45QzJLRVNaRUlwVzN3NmtjOUFVClRLc09qT2dvZld4cHdIMmxyOTVjSkliRU8rSy9jM2pCaDl4dkZTdFJvUHBRbzFzU0g3dTJHSXVEQWdNQkFBR2oKZ2dKMk1JSUNjakFPQmdOVkhROEJBZjhFQkFNQ0JhQXdIUVlEVlIwbEJCWXdGQVlJS3dZQkJRVUhBd0VHQ0NzRwpBUVVGQndNQ01Bd0dBMVVkRXdFQi93UUNNQUF3SFFZRFZSME9CQllFRklobGhmcUllK09OZmcyREJuZ3B3WlE2CjQycDZNQjhHQTFVZEl3UVlNQmFBRktoS2FtTUVmZDI2NXRFNXQ2WkZaZS96cU95aE1HOEdDQ3NHQVFVRkJ3RUIKQkdNd1lUQXVCZ2dyQmdFRkJRY3dBWVlpYUhSMGNEb3ZMMjlqYzNBdWFXNTBMWGd6TG14bGRITmxibU55ZVhCMApMbTl5WnpBdkJnZ3JCZ0VGQlFjd0FvWWphSFIwY0RvdkwyTmxjblF1YVc1MExYZ3pMbXhsZEhObGJtTnllWEIwCkxtOXlaeTh3S3dZRFZSMFJCQ1F3SW9JUUtpNWhhWE53Y21sdVp5NWpiRzkxWklJT1lXbHpjSEpwYm1jdVkyeHYKZFdRd1RBWURWUjBnQkVVd1F6QUlCZ1puZ1F3QkFnRXdOd1lMS3dZQkJBR0MzeE1CQVFFd0tEQW1CZ2dyQmdFRgpCUWNDQVJZYWFIUjBjRG92TDJOd2N5NXNaWFJ6Wlc1amNubHdkQzV2Y21jd2dnRUZCZ29yQmdFRUFkWjVBZ1FDCkJJSDJCSUh6QVBFQWRnRG5Fdkt3TjM0YVl2dU95UXhoaFBIcWV6ZkxWaDBSSmx2ejRQTkw4a0ZVYmdBQUFYTm4KR1NTMEFBQUVBd0JITUVVQ0lRQ1lvcEFvdk1abXVUbW4xcklQNlF5RUpQZEkrTWU0VTRnYkRiOG1Zc1VpVFFJZwpkSTBoeCszZk11cHpwY3BIU3VXVStHbGQwNHJQTmdFVDcydUdWendtRnRFQWR3Q3lIZ1hNaTZMTmlpQk9oMmI1Cks3bUtKU0JuYTlyNmNPZXlTVk10NzR1UVhnQUFBWE5uR1NTd0FBQUVBd0JJTUVZQ0lRRCtxVEErdVduR1dPcEkKdjE4VmNCZFhLU0pnUWxYZnZkbjZjdzkwS2FVd2RBSWhBTDd1K2RJLzVtUDhsQjI0SmZ1ZVAycTNjYUw2Q1Z2LwpjL1BJY2R6dzRWS3pNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUI4MmQvZVQydnNBalNaZFQwcW03OVZINk9zCnpqYURtcE1NbERwNjhkRWs4RHBpZXc0bERKZHMrWW9aMUN0K21QVVJBWVpPTjVjek03QnY1MWZ6c3B5NjcvcXgKV0FGc1VtTm16SFhuWnBBTi9LcktVR2NaRkxENmw5VTF5RWc3ZVpqU0VXL1JQdFg0aklsQzZrRHhMOGx0L1RBSgpmN3VDaklvUFZIRFZtYU1OMHBGSzB0MUF2ekdaL0FubFM0MkIrWHhYMlRkWStNbGg2K2dYcWpuN2o0QXB6TTFwCk9BbjA4Y1RCQUZOUS9RZEozMVJzNUZ1OXpGbVIraHl5dGZPREo5Z1ZZV2ZXVU1Sbm9ITlhjWm8xMmRJeVJPL2gKOTFteWRITGNhSFFnV2hBOTgweHpSbm5QQnpNNGJENCtJZjBBR0V4dHlCVVJzanN6Z3JXMUxmV0ZTdEZICi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=
+  tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBMzVINEpLTCtUM1FXZXp0d1NodUZiV0xDaEREalg2WDV1Sk55SkpLak9uS2xrVC9pCnFmVEVqOUpCNnZDNnJHV0F2bmx0RUlEVi9mS1lkL0NnbmU2YndlNnRsUFlzTlRwWFZjSGZMY2lIbnpnbnp0OFYKY3BCMW1LV3oxQjYwbmNoOUJUVlArSWh0V2VXM2lZOHRxeWdYQTkxN3gwODBCR0k1Qi9YdEYxc1VVY2lOYWdxMApSVGh1aThBR3VGYU5ReXI1OEF1elN1TERyaWJQc3VUdG9ybVI5NDVjU0VnTlJVTFNqQ2xqOHZiSm9oeHNESEdrCkZZNk5GK05PbWpoUnR1WjRrMGlxenRTYTV6ZlF0aWhFbVJDS1Z0OE9wSFBRRkV5ckRvem9LSDFzYWNCOXBhL2UKWENTR3hEdml2M040d1lmY2J4VXJVYUQ2VUtOYkVoKzd0aGlMZ3dJREFRQUJBb0lCQVFDdk1aZWVQZ3ZDLzFsTwpvRGxTR1ZicGJPYTQ2QWFGUVc3NjhMQVZjTU53WGI3WW41TmpVMmRrdklMak5GbFVGd1pZUEpiMnc3N3REVm5sClF5N2FFODBDbjZKdWhLb0gyL3ZzTzh4RCtFd3V2TGFWS2NPSXp5TVh4Mkd2NjQvbHhPSVRYcitZSm5CcWJkVHgKZXIxeXppdWEzOGpMV29tTWxkdlRIU2Y1a1duTzJ6N1FVbmZjdXdka1c2Z1p6RnhJUmh1bmF4SVgxRU1jenE3cwpGUEZMaFF3ZVp5bElHbHRWZFZtTEpoUGNQS3V5R3p3VkpuRUh5eCtkZ0hHa3d1Z0w4TndYSWxaMVlwRHVzM3JCCitPSHE2M3EvaTZwNVpvT1NFbEdyOEwyWXlXa1BFVTl0UGhlN1QyOTRDTEoyS0djVm4xQTlTRW9pOTlFbkNTWjcKT21jQ2lISUJBb0dCQVBRWUU5Szc4UXFuOVB4bkk0YWhvUFJaaEJzQldSN2RBL3lMSGNjbmwyTXVsN1JvMmwrQgp1RU1XaFZOb1BiOEtTNTlhWjV2anJBZUoxKy9zMitlRFVKRnBkQkhZdWVGV3hjZ0hHY205M2Z2RkxZU09JWDZHCnJhZUs2aHJDTGpvUElMVkFtYnczSDNPMHc4WXZXM2pTL1d1b2p4alNKNldoTGxLNDNKREg2dy9CQW9HQkFPcDUKbmYyc3JUTUtyZTA5RHZJSDFlUWFOdjR1cXZLWU9IQzRzbkpPd2N4WkFobzZYNFpUTGlDRDNBVGl4WnA3RVkwbApySnNUZnlXK1lIbU1ualhZeHhmTGxlRnhIOXVONlQ1UUt0KzYyVncvVC95Tmw5eWdaUDNtWnlnSkxaY0JRN3NWCktaRzgwa3VYUVMrNjdjMVYrVURyRnZRbmM4Nlpnek9zdmx4MGJteERBb0dCQUk0a2gwYXNrMDExU1VEQ2Z2bWoKbmFzdGhiU0VNSFc4bHRtMTJYMWtITkJ4RFg3Tm9IMEZlVnYzL1dQNHpCdzN6cG5aZDRSY0xJMm5ROHcvemo4ZgpSUWVvdFNLL1psOUd2SjRqSkcxSzE3NEpzTndFT0pVSnNJNWtZcmQ2WkprQ3ZqVk9qVGdCa1pzN3BOWUFOZkJDClRia255MHpVOUttTEZ3S3REQ1J6aHZzQkFvR0FJVkhRK3Joc0VHSEhIM3hhd0ZnT3RCQnBtaXRGalozRi8zYXYKblFER0YyVGFvS0dFNjVDc2NHQnNocUUzRldIQnQ3NFB6aVd5SHNuejZiSHExWm9OaUxzY2ZHSFg5aG92ZC9ScQpjMHFaRXJ2SWdRb1o5M2N2Z3NrWUJaOXdSQklnN3RmdUJWREF6WThiNjAxejk0YnRHYVdPcUhsbXdvZ2NGZDdKCldsZ05UUU1DZ1lCMzFhWGxsWnNyTnBFMU1kTWh4VXJIRHZFNkxpbXEweEppTEQ5UVovN0M4dmE2aHA5b0JFSEoKTzhHY20vSzRWRFEvRFpFY21DTlVDa2M2UUhqcm5NTlNKZW5LOGJXbEFjNGpYODc2eDdDZ0tpRXV5ci84ZkpwNApVb24ya1NTRDd6aTRxeW9WU21GY0hJZ21UZ1NGMXFTU2d5WkRmSHFGZ1ZtWWpiSXBjV2NqK2c9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZhVENDQkZHZ0F3SUJBZ0lTQXlpTEJmajRBMURLa3JEcTNFSHF5TDdVTUEwR0NTcUdTSWIzRFFFQkN3VUEKTUVveEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1TTXdJUVlEVlFRRApFeHBNWlhRbmN5QkZibU55ZVhCMElFRjFkR2h2Y21sMGVTQllNekFlRncweU1EQTNNVGt4TVRReU5EZGFGdzB5Ck1ERXdNVGN4TVRReU5EZGFNQnN4R1RBWEJnTlZCQU1NRUNvdVlXbHpjSEpwYm1jdVkyeHZkV1F3Z2dFaU1BMEcKQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURma2Zna292NVBkQlo3TzNCS0c0VnRZc0tFTU9OZgpwZm00azNJa2txTTZjcVdSUCtLcDlNU1Awa0hxOExxc1pZQytlVzBRZ05YOThwaDM4S0NkN3B2QjdxMlU5aXcxCk9sZFZ3ZDh0eUllZk9DZk8zeFZ5a0hXWXBiUFVIclNkeUgwRk5VLzRpRzFaNWJlSmp5MnJLQmNEM1h2SFR6UUUKWWprSDllMFhXeFJSeUkxcUNyUkZPRzZMd0FhNFZvMURLdm53QzdOSzRzT3VKcyt5NU8yaXVaSDNqbHhJU0ExRgpRdEtNS1dQeTlzbWlIR3dNY2FRVmpvMFg0MDZhT0ZHMjVuaVRTS3JPMUpybk45QzJLRVNaRUlwVzN3NmtjOUFVClRLc09qT2dvZld4cHdIMmxyOTVjSkliRU8rSy9jM2pCaDl4dkZTdFJvUHBRbzFzU0g3dTJHSXVEQWdNQkFBR2oKZ2dKMk1JSUNjakFPQmdOVkhROEJBZjhFQkFNQ0JhQXdIUVlEVlIwbEJCWXdGQVlJS3dZQkJRVUhBd0VHQ0NzRwpBUVVGQndNQ01Bd0dBMVVkRXdFQi93UUNNQUF3SFFZRFZSME9CQllFRklobGhmcUllK09OZmcyREJuZ3B3WlE2CjQycDZNQjhHQTFVZEl3UVlNQmFBRktoS2FtTUVmZDI2NXRFNXQ2WkZaZS96cU95aE1HOEdDQ3NHQVFVRkJ3RUIKQkdNd1lUQXVCZ2dyQmdFRkJRY3dBWVlpYUhSMGNEb3ZMMjlqYzNBdWFXNTBMWGd6TG14bGRITmxibU55ZVhCMApMbTl5WnpBdkJnZ3JCZ0VGQlFjd0FvWWphSFIwY0RvdkwyTmxjblF1YVc1MExYZ3pMbXhsZEhObGJtTnllWEIwCkxtOXlaeTh3S3dZRFZSMFJCQ1F3SW9JUUtpNWhhWE53Y21sdVp5NWpiRzkxWklJT1lXbHpjSEpwYm1jdVkyeHYKZFdRd1RBWURWUjBnQkVVd1F6QUlCZ1puZ1F3QkFnRXdOd1lMS3dZQkJBR0MzeE1CQVFFd0tEQW1CZ2dyQmdFRgpCUWNDQVJZYWFIUjBjRG92TDJOd2N5NXNaWFJ6Wlc1amNubHdkQzV2Y21jd2dnRUZCZ29yQmdFRUFkWjVBZ1FDCkJJSDJCSUh6QVBFQWRnRG5Fdkt3TjM0YVl2dU95UXhoaFBIcWV6ZkxWaDBSSmx2ejRQTkw4a0ZVYmdBQUFYTm4KR1NTMEFBQUVBd0JITUVVQ0lRQ1lvcEFvdk1abXVUbW4xcklQNlF5RUpQZEkrTWU0VTRnYkRiOG1Zc1VpVFFJZwpkSTBoeCszZk11cHpwY3BIU3VXVStHbGQwNHJQTmdFVDcydUdWendtRnRFQWR3Q3lIZ1hNaTZMTmlpQk9oMmI1Cks3bUtKU0JuYTlyNmNPZXlTVk10NzR1UVhnQUFBWE5uR1NTd0FBQUVBd0JJTUVZQ0lRRCtxVEErdVduR1dPcEkKdjE4VmNCZFhLU0pnUWxYZnZkbjZjdzkwS2FVd2RBSWhBTDd1K2RJLzVtUDhsQjI0SmZ1ZVAycTNjYUw2Q1Z2LwpjL1BJY2R6dzRWS3pNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUI4MmQvZVQydnNBalNaZFQwcW03OVZINk9zCnpqYURtcE1NbERwNjhkRWs4RHBpZXc0bERKZHMrWW9aMUN0K21QVVJBWVpPTjVjek03QnY1MWZ6c3B5NjcvcXgKV0FGc1VtTm16SFhuWnBBTi9LcktVR2NaRkxENmw5VTF5RWc3ZVpqU0VXL1JQdFg0aklsQzZrRHhMOGx0L1RBSgpmN3VDaklvUFZIRFZtYU1OMHBGSzB0MUF2ekdaL0FubFM0MkIrWHhYMlRkWStNbGg2K2dYcWpuN2o0QXB6TTFwCk9BbjA4Y1RCQUZOUS9RZEozMVJzNUZ1OXpGbVIraHl5dGZPREo5Z1ZZV2ZXVU1Sbm9ITlhjWm8xMmRJeVJPL2gKOTFteWRITGNhSFFnV2hBOTgweHpSbm5QQnpNNGJENCtJZjBBR0V4dHlCVVJzanN6Z3JXMUxmV0ZTdEZICi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=
+type: Opaque
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard-csrf
+  namespace: kubernetes-dashboard
+type: Opaque
+data:
+  csrf: ""
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard-key-holder
+  namespace: kubernetes-dashboard
+type: Opaque
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard-settings
+  namespace: kubernetes-dashboard
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+rules:
+  # Allow Dashboard to get, update and delete Dashboard exclusive secrets.
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames:
+      [
+        "kubernetes-dashboard-key-holder",
+        "kubernetes-dashboard-certs",
+        "kubernetes-dashboard-csrf",
+      ]
+    verbs: ["get", "update", "delete"]
+    # Allow Dashboard to get and update 'kubernetes-dashboard-settings' config map.
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["kubernetes-dashboard-settings"]
+    verbs: ["get", "update"]
+    # Allow Dashboard to get metrics.
+  - apiGroups: [""]
+    resources: ["services"]
+    resourceNames: ["heapster", "dashboard-metrics-scraper"]
+    verbs: ["proxy"]
+  - apiGroups: [""]
+    resources: ["services/proxy"]
+    resourceNames:
+      [
+        "heapster",
+        "http:heapster:",
+        "https:heapster:",
+        "dashboard-metrics-scraper",
+        "http:dashboard-metrics-scraper",
+      ]
+    verbs: ["get"]
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+rules:
+  # Allow Metrics Scraper to get metrics from the Metrics server
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["pods", "nodes"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kubernetes-dashboard
+subjects:
+  - kind: ServiceAccount
+    name: kubernetes-dashboard
+    namespace: kubernetes-dashboard
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubernetes-dashboard
+subjects:
+  - kind: ServiceAccount
+    name: kubernetes-dashboard
+    namespace: kubernetes-dashboard
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: kubernetes-dashboard
+  template:
+    metadata:
+      labels:
+        k8s-app: kubernetes-dashboard
+    spec:
+      containers:
+        - name: kubernetes-dashboard
+          image: kubernetesui/dashboard:v2.0.3
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8443
+              protocol: TCP
+          args:
+            - --auto-generate-certificates
+            - --namespace=kubernetes-dashboard
+            # Uncomment the following line to manually specify Kubernetes API server Host
+            # If not specified, Dashboard will attempt to auto discover the API server and connect
+            # to it. Uncomment only if the default does not work.
+            # - --apiserver-host=http://my-address:port
+          volumeMounts:
+            - name: kubernetes-dashboard-certs
+              mountPath: /certs
+              # Create on-disk volume to store exec logs
+            - mountPath: /tmp
+              name: tmp-volume
+          livenessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /
+              port: 8443
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsUser: 1001
+            runAsGroup: 2001
+      volumes:
+        - name: kubernetes-dashboard-certs
+          secret:
+            secretName: kubernetes-dashboard-certs
+        - name: tmp-volume
+          emptyDir: {}
+      serviceAccountName: kubernetes-dashboard
+      nodeSelector:
+        "kubernetes.io/os": linux
+      # Comment the following tolerations if Dashboard must not be deployed on master
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: dashboard-metrics-scraper
+  name: dashboard-metrics-scraper
+  namespace: kubernetes-dashboard
+spec:
+  ports:
+    - port: 8000
+      targetPort: 8000
+  selector:
+    k8s-app: dashboard-metrics-scraper
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: dashboard-metrics-scraper
+  name: dashboard-metrics-scraper
+  namespace: kubernetes-dashboard
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: dashboard-metrics-scraper
+  template:
+    metadata:
+      labels:
+        k8s-app: dashboard-metrics-scraper
+      annotations:
+        seccomp.security.alpha.kubernetes.io/pod: "runtime/default"
+    spec:
+      containers:
+        - name: dashboard-metrics-scraper
+          image: kubernetesui/metrics-scraper:v1.0.4
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp-volume
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsUser: 1001
+            runAsGroup: 2001
+      serviceAccountName: kubernetes-dashboard
+      nodeSelector:
+        "kubernetes.io/os": linux
+      # Comment the following tolerations if Dashboard must not be deployed on master
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      volumes:
+        - name: tmp-volume
+          emptyDir: {}
