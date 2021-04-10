@@ -1,4 +1,4 @@
-## Service
+## nameserver
 apiVersion: v1
 kind: Service
 metadata:
@@ -17,7 +17,7 @@ spec:
     app: rocketmq-nameserver
 ---
 
-## Service
+## broker
 apiVersion: v1
 kind: Service
 metadata:
@@ -38,3 +38,22 @@ spec:
       targetPort: 10911
   selector:
     app: rocketmq-broker
+
+---
+## dashboard
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketmq-dashboard
+  namespace: aispring
+  labels:
+    app: rocketmq-dashboard
+spec:
+  type: NodePort
+  ports:
+    - name: rocketmq-dashboard
+      port: 8080
+      nodePort: 9880
+      targetPort: 8080
+  selector:
+    app: rocketmq-dashboard

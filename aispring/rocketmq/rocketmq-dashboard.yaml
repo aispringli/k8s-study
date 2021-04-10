@@ -1,0 +1,27 @@
+## dashboard
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketmq-dashboard
+  namespace: aispring
+  labels:
+    app: rocketmq-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rocketmq-dashboard
+  template:
+    metadata:
+      labels:
+        app: rocketmq-dashboard
+    spec:      
+      containers:
+        - name: rocketmq-dashboard
+          image: apacherocketmq/rocketmq-console          
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: "JAVA_OPTS"
+            value: "-Drocketmq.namesrv.addr=rocketmq-nameserver:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+          ports:
+            - containerPort: 8080          
