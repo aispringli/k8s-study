@@ -57,7 +57,7 @@ spec:
           command:
             - "sh"
             - "-c"
-            - "ls /home/rocketmq/rocketmq-4.6.0 && sed -i 's/-server -Xms8g -Xmx8g -Xmn4g//g' /home/rocketmq/rocketmq-4.6.0/distribution/bin/runbroker.sh"
+            - "sed -i 's/-server -Xms8g -Xmx8g -Xmn4g//g' /home/rocketmq/rocketmq-4.6.0/distribution/bin/runbroker.sh"
           securityContext:
             privileged: true
             runAsUser: 0
