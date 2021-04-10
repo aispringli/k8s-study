@@ -5,7 +5,7 @@ metadata:
   name: rocketmq-nameserver
   namespace: aispring
   labels:
-    app: rocketmq
+    app: rocketmq-nameserver
 spec:
   type: NodePort
   ports:
@@ -23,7 +23,7 @@ metadata:
   name: rocketmq-broker
   namespace: aispring
   labels:
-    app: rocketmq
+    app: rocketmq-broker
 spec:
   type: NodePort
   ports:
