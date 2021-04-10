@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rocketmq
+  name: rocketmq-nameserver
   namespace: aispring
   labels:
     app: rocketmq
@@ -20,7 +20,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rocketmq
+  name: rocketmq-broker
   namespace: aispring
   labels:
     app: rocketmq
