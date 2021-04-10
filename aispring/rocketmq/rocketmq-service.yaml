@@ -1,0 +1,17 @@
+## Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketmq
+  namespace: aispring
+  labels:
+    app: rocketmq
+spec:
+  type: NodePort
+  ports:
+    - name: rocketmq
+      port: 6379
+      nodePort: 6379
+      targetPort: 6379
+  selector:
+    app: rocketmq

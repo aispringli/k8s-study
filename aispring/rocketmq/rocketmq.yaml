@@ -1,0 +1,76 @@
+## nameserver
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketmq-nameserver
+  namespace: aispring
+  labels:
+    app: rocketmq-nameserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rocketmq-nameserver
+  template:
+    metadata:
+      labels:
+        app: rocketmq-nameserver
+    spec:      
+      containers:
+        - name: rocketmq-nameserver
+          image: apacherocketmq/rocketmq
+          command: ["sh","mqnamesrv"]
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9876
+          volumeMounts:
+          - mountPath: /home/rocketmq/logs
+            name: rocketmq-nameserver-logs
+      volumes:
+        - name: rocketmq-nameserver-logs
+          hostPath:
+            path: /data/k8s/rocketmq/nameserver/logs
+
+## broker
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketmq-broker
+  namespace: aispring
+  labels:
+    app: rocketmq-broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rocketmq-broker
+  template:
+    metadata:
+      labels:
+        app: rocketmq-broker
+    spec:
+      containers:
+        - name: rocketmq-broker
+          image: apacherocketmq/rocketmq
+          command: ["sh","mqbroker", "-n","rocketmq-nameserver:9876"]
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 10909
+          - containerPort: 10911          
+          volumeMounts:
+          - mountPath: /home/rocketmq/logs
+            name: rocketmq-broker-logs
+          - mountPath: /home/rocketmq/store
+            name: rocketmq-broker-store
+          - mountPath: /home/rocketmq/config
+            name: rocketmq-broker-config
+      volumes:
+        - name: rocketmq-broker-logs
+          hostPath:
+            path: /data/k8s/rocketmq/broker/logs
+        - name: rocketmq-broker-store
+          hostPath:
+            path: /data/k8s/rocketmq/broker/store
+        - name: rocketmq-broker-config
+          configMap:
+            name: rocketmq-config
