@@ -61,9 +61,6 @@ spec:
           securityContext:
             privileged: true
             runAsUser: 0
-          volumeMounts:
-            - name: sys
-              mountPath: /sys
       containers:
         - name: rocketmq-broker
           image: apacherocketmq/rocketmq
