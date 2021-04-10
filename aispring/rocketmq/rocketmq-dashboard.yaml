@@ -18,7 +18,7 @@ spec:
     spec:      
       containers:
         - name: rocketmq-dashboard
-          image: apacherocketmq/rocketmq-console          
+          image: apacherocketmq/rocketmq-console:2.0.0         
           imagePullPolicy: IfNotPresent
           env:
           - name: "JAVA_OPTS"
