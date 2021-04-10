@@ -15,7 +15,8 @@ spec:
       targetPort: 9876
   selector:
     app: rocketmq-nameserver
-  
+---
+
 ## Service
 apiVersion: v1
 kind: Service

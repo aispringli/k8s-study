@@ -30,6 +30,7 @@ spec:
         - name: rocketmq-nameserver-logs
           hostPath:
             path: /data/k8s/rocketmq/nameserver/logs
+---
 
 ## broker
 apiVersion: apps/v1
