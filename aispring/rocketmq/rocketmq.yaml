@@ -50,6 +50,20 @@ spec:
       labels:
         app: rocketmq-broker
     spec:
+      initContainers:
+        - name: system-init
+          image: busybox:1.32
+          imagePullPolicy: IfNotPresent
+          command:
+            - "sh"
+            - "-c"
+            - "ls /home/rocketmq/rocketmq-4.6.0 && sed -i 's/-server -Xms8g -Xmx8g -Xmn4g//g' /home/rocketmq/rocketmq-4.6.0/distribution/bin/runbroker.sh"
+          securityContext:
+            privileged: true
+            runAsUser: 0
+          volumeMounts:
+            - name: sys
+              mountPath: /sys
       containers:
         - name: rocketmq-broker
           image: apacherocketmq/rocketmq
@@ -60,7 +74,7 @@ spec:
           - containerPort: 10911
           env:
           - name: "JAVA_OPT"
-            value: " -server -Xms256m -Xmx256m -Xmn125m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=1024m"
+            value: " -server -Xms256m -Xmx256m -Xmn125m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=1024m"          
           volumeMounts:
           - mountPath: /home/rocketmq/logs
             name: rocketmq-broker-logs
