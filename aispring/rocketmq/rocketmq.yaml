@@ -59,8 +59,8 @@ spec:
           - containerPort: 10909
           - containerPort: 10911
           env:
-          - name: "JAVA_OPT_EXT"
-            value: " -XX:-AssumeMP"
+          # - name: "JAVA_OPT_EXT"
+          #   value: " -XX:-AssumeMP"
           - name: "Xms"
             value: "2048m"
           - name: "Xmx"
