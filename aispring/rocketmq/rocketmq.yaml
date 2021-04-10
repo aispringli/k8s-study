@@ -62,11 +62,11 @@ spec:
           - name: "JAVA_OPT_EXT"
             value: " -XX:-AssumeMP"
           - name: "Xms"
-            value: "512m"
+            value: "2048m"
           - name: "Xmx"
-            value: "512m"
+            value: "2048m"
           - name: "Xmn"
-            value: "512m"
+            value: "1024m"
           volumeMounts:
           - mountPath: /home/rocketmq/logs
             name: rocketmq-broker-logs
