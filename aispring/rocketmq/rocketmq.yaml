@@ -61,6 +61,6 @@ spec:
         - name: rocketmq-store
           hostPath:
             path: /data/k8s/rocketmq/store
-        - name: rocketmq-config
+        - name: rocketmq-conf
           configMap:
             name: rocketmq-config
