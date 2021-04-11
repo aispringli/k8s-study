@@ -22,6 +22,6 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
           - name: "JAVA_OPTS"
-            value: "-Drocketmq.namesrv.addr=rocketmq-nameserver:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+            value: "-Drocketmq.namesrv.addr=rocketmq:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
           ports:
             - containerPort: 8080          

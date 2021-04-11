@@ -16,3 +16,4 @@ data:
     flushDiskType = ASYNC_FLUSH
     # set `brokerIP1` if you want to set physical IP as broker IP.
     # brokerIP1=10.10.101.80 #change you own physical IP Address
+    brokerIP1=192.168.66.231
