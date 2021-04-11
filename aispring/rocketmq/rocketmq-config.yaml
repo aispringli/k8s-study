@@ -10,6 +10,7 @@ data:
     brokerClusterName = DefaultCluster
     brokerName = broker-a
     brokerId = 0
+    namesrvAddr=rocketmq:9876;
     deleteWhen = 04
     fileReservedTime = 48
     brokerRole = ASYNC_MASTER
