@@ -31,9 +31,9 @@ spec:
             - containerPort: 9876
           volumeMounts:
             - name: rocketmq-logs
-                mountPath: /home/rocketmq/logs
+              mountPath: /home/rocketmq/logs
             - name: rocketmq-store
-                mountPath: /home/rocketmq/store
+              mountPath: /home/rocketmq/store
         - name: rmqbroker
           image: foxiswho/rocketmq:4.8.0
           imagePullPolicy: IfNotPresent
