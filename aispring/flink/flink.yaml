@@ -25,7 +25,7 @@ spec:
             - name: JOB_NAMEGER_RPC_ADDRESS
               value: flink
           args: 
-            - jobmanger
+            - jobmanager
           ports:
             - containerPort: 6123
             - containerPort: 6124
@@ -40,6 +40,8 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
+          args: 
+            - taskmanager
           ports:
             - containerPort: 6121
             - containerPort: 6122
