@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flink
+  namespace: aispring
+  labels:
+    app: flink
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flink
+  template:
+    metadata:
+      labels:
+        app: flink
+    spec:      
+      containers:
+        - name: jobmanager
+          image: flink:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: JOB_NAMEGER_RPC_ADDRESS
+              value: flink
+          args: 
+            - jobmanger
+          ports:
+            - containerPort: 6123
+            - containerPort: 6124
+            - containerPort: 6125
+            - containerPort: 8081
+          volumeMounts:
+            - name: flink-config
+              mountPath: /opt/flink/conf
+        - name: taskmanager
+          image: flink:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+          ports:
+            - containerPort: 6121
+            - containerPort: 6122
+            - containerPort: 6125
+      volumes:
+        - name: flink-config
+          configMap:
+            name: flink-config
