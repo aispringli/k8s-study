@@ -1,0 +1,53 @@
+# hdfs
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: aispring
+  name: hadoop-hdfs-master
+spec:
+  type: NodePort
+  selector:
+    name: hdfs-master
+  ports:
+    - name: rpc
+      port: 9000
+      targetPort: 9000
+    - name: http
+      port: 50070
+      targetPort: 50070
+      nodePort: 50070
+---
+# yarn
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: aispring
+  name: hadoop-yarn-master
+spec:
+  type: NodePort
+  selector:
+    name: yarn-master
+  ports:
+    - name: "8030"
+      port: 8030
+    - name: "8031"
+      port: 8031
+    - name: "8032"
+      port: 8032
+    - name: http
+      port: 8088
+      targetPort: 8088
+      nodePort: 8088
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: aispring
+  name: yarn-node
+spec:
+  clusterIP: None
+  selector:
+    name: yarn-node
+  ports:
+    - port: 8040
