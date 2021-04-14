@@ -18,6 +18,9 @@ spec:
         - name: hdfs-master
           image: bde2020/hadoop-namenode
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 9000
             - containerPort: 50070
@@ -56,6 +59,9 @@ spec:
         - name: hadoop-datanode
           image: bde2020/hadoop-datanode
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 9000
             - containerPort: 50070

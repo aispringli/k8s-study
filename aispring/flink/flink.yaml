@@ -26,6 +26,9 @@ spec:
               value: flink
           args: 
             - jobmanager
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 6123
             - containerPort: 6124

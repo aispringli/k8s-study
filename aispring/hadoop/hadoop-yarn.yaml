@@ -18,6 +18,9 @@ spec:
         - name: yarn-master
           image: bde2020/hadoop-resourcemanager
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 9000
             - containerPort: 50070
@@ -56,6 +59,9 @@ spec:
         - name: yarn-node
           image: bde2020/hadoop-nodemanager
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 8040
             - containerPort: 8041

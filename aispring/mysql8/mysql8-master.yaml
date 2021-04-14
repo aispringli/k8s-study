@@ -62,6 +62,9 @@ spec:
               mountPath: /docker-entrypoint-initdb.d
             - name: mysql-config
               mountPath: /etc/mysql/conf.d/
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 3306
           livenessProbe:
