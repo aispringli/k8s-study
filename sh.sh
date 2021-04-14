@@ -107,3 +107,6 @@ kubectl taint nodes --all node.kubernetes.io/memory-pressure
  cat /dev/zero > /dev/sdb
  
 LC.^\,*,)bkP$&v8%QPC
+
+
+kubectl -n aispring  get pods | grep Evicted |awk '{print$1}'|xargs kubectl -n aispring delete pods
