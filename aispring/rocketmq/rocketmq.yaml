@@ -27,6 +27,9 @@ spec:
             - name: JAVA_OPT_EXT
               value:  -Xmn256m
           command: ["sh","-c","mqnamesrv"]
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 9876
           volumeMounts:
@@ -43,6 +46,9 @@ spec:
             - name: JAVA_OPT_EXT
               value: -Duser.home=/home/rocketmq -Xms1024M -Xmx1024M -Xmn256m -XX:ParallelGCThreads=4
           command: [ "sh","-c","mqbroker -c /home/rocketmq/config/broker.conf" ]
+          resources:
+            limits:
+              memory: 1Gi
           ports:
             - containerPort: 10909
             - containerPort: 10911
