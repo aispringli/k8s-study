@@ -2,31 +2,30 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   namespace: aispring
-  name: hadoop-yarn-master
+  name: hadoop-resourcemanager
   labels:
-    name: yarn-master
+    name: hadoop-resourcemanager
 spec:
   replicas: 1
   selector:
-    name: yarn-master
+    name: hadoop-resourcemanager
   template:
     metadata:
       labels:
-        name: yarn-master
+        name: hadoop-resourcemanager
     spec:
       containers:
-        - name: yarn-master
+        - name: hadoop-resourcemanager
           image: bde2020/hadoop-resourcemanager
           imagePullPolicy: IfNotPresent
           resources:
             limits:
               memory: 1Gi
           ports:
-            - containerPort: 9000
-            - containerPort: 50070
+            - containerPort: 8088
           env:
-            - name: HADOOP_NODE_TYPE
-              value: resourceman
+            - name: SERVICE_PRECONDITION
+              value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864"
             - name: HDFS_MASTER_SERVICE
               valueFrom:
                 configMapKeyRef:
@@ -43,20 +42,20 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   namespace: aispring
-  name: hadoop-yarn-node
+  name: hadoop-nodemanager
   labels:
-    name: yarn-node
+    name: hadoop-nodemanager
 spec:
-  replicas: 3
+  replicas: 1
   selector:
-    name: yarn-node
+    name: hadoop-nodemanager
   template:
     metadata:
       labels:
-        name: yarn-node
+        name: hadoop-nodemanager
     spec:
       containers:
-        - name: yarn-node
+        - name: hadoop-nodemanager
           image: bde2020/hadoop-nodemanager
           imagePullPolicy: IfNotPresent
           resources:
@@ -67,16 +66,36 @@ spec:
             - containerPort: 8041
             - containerPort: 8042
           env:
-            - name: HADOOP_NODE_TYPE
-              value: yarnnode
-            - name: HDFS_MASTER_SERVICE
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDFS_MASTER_SERVICE
-            - name: HDOOP_YARN_MASTER
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDOOP_YARN_MASTER
+            - name: SERVICE_PRECONDITION
+              value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  namespace: aispring
+  name: hadoop-historyserver
+  labels:
+    name: hadoop-historyserver
+spec:
+  replicas: 1
+  selector:
+    name: hadoop-historyserver
+  template:
+    metadata:
+      labels:
+        name: hadoop-historyserver
+    spec:
+      containers:
+        - name: hadoop-historyserver
+          image: bde2020/hadoop-historyserver
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 1Gi
+          ports:
+            - containerPort: 8188
+          env:
+            - name: SERVICE_PRECONDITION
+              value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
       restartPolicy: Always

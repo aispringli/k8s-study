@@ -1,53 +1,84 @@
-# hdfs
+# namenode
 apiVersion: v1
 kind: Service
 metadata:
   namespace: aispring
-  name: hadoop-hdfs-master
+  name: hadoop-namenode
 spec:
   type: NodePort
   selector:
-    name: hdfs-master
+    name: hadoop-namenode
   ports:
     - name: rpc
       port: 9000
       targetPort: 9000
+      nodePort: 39000
     - name: http
-      port: 50070
-      targetPort: 50070
-      nodePort: 50070
+      port: 9870
+      targetPort: 9870
+      nodePort: 39870
 ---
-# yarn
+# datanode
 apiVersion: v1
 kind: Service
 metadata:
   namespace: aispring
-  name: hadoop-yarn-master
+  name: hadoop-datanode
 spec:
   type: NodePort
   selector:
-    name: yarn-master
+    name: hadoop-datanode
   ports:
-    - name: "8030"
-      port: 8030
-    - name: "8031"
-      port: 8031
-    - name: "8032"
-      port: 8032
     - name: http
-      port: 8088
-      targetPort: 8088
-      nodePort: 8088
-
+      port: 9864
+      targetPort: 9864
+      nodePort: 39864
 ---
+# resourcemanager
 apiVersion: v1
 kind: Service
 metadata:
   namespace: aispring
-  name: yarn-node
+  name: hadoop-resourcemanager
 spec:
-  clusterIP: None
+  type: NodePort
   selector:
-    name: yarn-node
+    name: hadoop-resourcemanager
   ports:
-    - port: 8040
+    - name: http
+      port: 8088
+      targetPort: 8088
+      nodePort: 38088
+---
+# nodemanager
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: aispring
+  name: hadoop-nodemanager
+spec:
+  type: NodePort
+  selector:
+    name: hadoop-nodemanager
+  ports:
+    - name: http
+      port: 8042
+      targetPort: 8042
+      nodePort: 38042
+---
+# historyserver
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: aispring
+  name: hadoop-historyserver
+spec:
+  type: NodePort
+  selector:
+    name: hadoop-historyserver
+  ports:
+    - name: http
+      port: 8188
+      targetPort: 8188
+      nodePort: 38188
+---

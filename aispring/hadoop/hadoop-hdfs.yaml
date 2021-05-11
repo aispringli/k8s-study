@@ -2,20 +2,20 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   namespace: aispring
-  name: hadoop-hdfs-master
+  name: hadoop-namenode
   labels:
     name: hdfs
 spec:
   replicas: 1
   selector:
-    name: hdfs-master
+    name: hadoop-namenode
   template:
     metadata:
       labels:
-        name: hdfs-master
+        name: hadoop-namenode
     spec:
       containers:
-        - name: hdfs-master
+        - name: hadoop-namenode
           image: bde2020/hadoop-namenode
           imagePullPolicy: IfNotPresent
           resources:
@@ -23,22 +23,10 @@ spec:
               memory: 1Gi
           ports:
             - containerPort: 9000
-            - containerPort: 50070
+            - containerPort: 9870
           env:
             - name: CLUSTER_NAME
               value: aispring
-            - name: HADOOP_NODE_TYPE
-              value: namenode
-            - name: HDFS_MASTER_SERVICE
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDFS_MASTER_SERVICE
-            - name: HDOOP_YARN_MASTER
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDOOP_YARN_MASTER
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -49,7 +37,7 @@ metadata:
   labels:
     app: hadoop
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     name: hadoop-datanode
   template:
@@ -65,19 +53,8 @@ spec:
             limits:
               memory: 1Gi
           ports:
-            - containerPort: 9000
-            - containerPort: 50070
+            - containerPort: 9864
           env:
-            - name: HADOOP_NODE_TYPE
-              value: datanode
-            - name: HDFS_MASTER_SERVICE
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDFS_MASTER_SERVICE
-            - name: HDOOP_YARN_MASTER
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDOOP_YARN_MASTER
+            - name: SERVICE_PRECONDITION
+              value: "hadoop-namenode:9870"
       restartPolicy: Always
