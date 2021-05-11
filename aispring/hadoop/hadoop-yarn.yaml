@@ -25,7 +25,7 @@ spec:
             - containerPort: 8088
           env:
             - name: SERVICE_PRECONDITION
-              value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864"
+              value: "hadoop-namenode:39000 hadoop-namenode:9870 hadoop-datanode:9864"
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -57,7 +57,7 @@ spec:
             - containerPort: 8042
           env:
             - name: SERVICE_PRECONDITION
-              value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
+              value: "hadoop-namenode:39000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -87,5 +87,5 @@ spec:
             - containerPort: 8188
           env:
             - name: SERVICE_PRECONDITION
-              value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
+              value: "hadoop-namenode:39000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
       restartPolicy: Always
