@@ -10,9 +10,9 @@ spec:
     name: hadoop-namenode
   ports:
     - name: rpc
-      port: 9820
-      targetPort: 9820
-      nodePort: 39820
+      port: 9000
+      targetPort: 9000
+      nodePort: 39000
     - name: http
       port: 9870
       targetPort: 9870
