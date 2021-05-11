@@ -26,16 +26,6 @@ spec:
           env:
             - name: SERVICE_PRECONDITION
               value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864"
-            - name: HDFS_MASTER_SERVICE
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDFS_MASTER_SERVICE
-            - name: HDOOP_YARN_MASTER
-              valueFrom:
-                configMapKeyRef:
-                  name: hadoop-conf
-                  key: HDOOP_YARN_MASTER
       restartPolicy: Always
 ---
 apiVersion: v1
