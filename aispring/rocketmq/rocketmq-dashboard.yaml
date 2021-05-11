@@ -15,13 +15,13 @@ spec:
     metadata:
       labels:
         app: rocketmq-dashboard
-    spec:      
+    spec:
       containers:
         - name: rocketmq-dashboard
-          image: apacherocketmq/rocketmq-console:2.0.0         
+          image: apacherocketmq/rocketmq-console:2.0.0
           imagePullPolicy: IfNotPresent
           env:
-          - name: "JAVA_OPTS"
-            value: "-Drocketmq.namesrv.addr=rocketmq:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+            - name: "JAVA_OPTS"
+              value: "-Drocketmq.namesrv.addr=rocketmq:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
           ports:
             - containerPort: 8080          

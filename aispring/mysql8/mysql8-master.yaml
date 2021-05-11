@@ -94,7 +94,7 @@ spec:
           hostPath:
             path: /data/k8s/mysql8/data
         - name: mysql-initdb
-          emptyDir: {}
+          emptyDir: { }
         - name: mysql-config
           configMap:
             name: mysql-config

@@ -39,7 +39,7 @@ gitlab-runner register \
   --kubernetes-ca-file "/etc/gitlab-runner/k8s-cert/ca.crt" \
   --kubernetes-bearer_token "eyJhbGciOiJSUzI1NiIsImtpZCI6Ilc4NmtwN2JnSlRWNFRaYnR2MjNQVk9MTUtyQ0ZRQkVqSzBNNEFYb2kxWEkifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWw3aDVkIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI1YWQ5NGY2Yi0xMzcwLTRlZTctOGUzOC1kMDhkMWZlNGZiNTkiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06YWRtaW4tdXNlciJ9.SALJm7AVNhde3A8gytrlBRTfpv1sZpJgwnzbNDLQn2eC_SEwd0u6MEcnlSoSQ0kxfqwf_X4221SByjio_tCRuaYefUo6HUslTDELycWRq1j5--f3q8DvvVIRcuGDo7iofNIn3tEV32fIJplGrIsm0DXz2TYG66SK4-D1oYP6GwN4JyhtgDh1Rmx7wY6bI9fgOgW7VzuyfEeSiJ-5dZ4aiZ13jDMXwm0fKsHgu0V6xs8KZ1hDPZSOhESbsbROY4v6PoWLiWzjyt4j3Lwh1XmoYs2gUGVxP4DVUTSaAqZNi8vjodM5gR6V6lDQHpwCKPETvjFl-XyTuy7fybMdKbSOTA" \
   --kubernetes-namespace "gitlab-runner"
-  --kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/.m2:/root/.m2" \
+--kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/.m2:/root/.m2" \
   --kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/.npm:/root/.npm" \
   --kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/app:/opt/app"
-  --kubernetes-volumes "/var/run/docker.sock:/var/run/docker.sock"
+--kubernetes-volumes "/var/run/docker.sock:/var/run/docker.sock"

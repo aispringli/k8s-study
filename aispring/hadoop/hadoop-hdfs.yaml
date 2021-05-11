@@ -25,6 +25,8 @@ spec:
             - containerPort: 9000
             - containerPort: 50070
           env:
+            - name: CLUSTER_NAME
+              value: aispring
             - name: HADOOP_NODE_TYPE
               value: namenode
             - name: HDFS_MASTER_SERVICE

@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         app: flink
-    spec:      
+    spec:
       containers:
         - name: jobmanager
           image: flink:latest
@@ -24,7 +24,7 @@ spec:
               value: Asia/Shanghai
             - name: JOB_NAMEGER_RPC_ADDRESS
               value: flink
-          args: 
+          args:
             - jobmanager
           resources:
             limits:
@@ -43,7 +43,7 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
-          args: 
+          args:
             - taskmanager
           ports:
             - containerPort: 6121

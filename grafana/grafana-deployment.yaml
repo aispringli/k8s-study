@@ -46,7 +46,7 @@ spec:
         - name: "init-chown-data"
           image: "busybox:latest"
           imagePullPolicy: "IfNotPresent"
-          command: ["chown", "-R", "472:472", "/var/lib/grafana/"]
+          command: [ "chown", "-R", "472:472", "/var/lib/grafana/" ]
           volumeMounts:
             - name: grafana-data
               mountPath: /var/lib/grafana/

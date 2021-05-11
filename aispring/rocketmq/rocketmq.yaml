@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         app: rocketmq
-    spec:      
+    spec:
       containers:
         - name: rocketmq
           image: foxiswho/rocketmq:4.8.0
@@ -25,8 +25,8 @@ spec:
             - name: JAVA_OPT
               value: -Duser.home=/home/rocketmq
             - name: JAVA_OPT_EXT
-              value:  -Xmn256m
-          command: ["sh","-c","mqnamesrv"]
+              value: -Xmn256m
+          command: [ "sh","-c","mqnamesrv" ]
           resources:
             limits:
               memory: 1Gi
