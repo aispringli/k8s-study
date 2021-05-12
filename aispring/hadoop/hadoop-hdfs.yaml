@@ -22,7 +22,7 @@ spec:
             limits:
               memory: 1Gi
           ports:
-            - containerPort: 9000
+            - containerPort: 8020
             - containerPort: 9870
           env:
             - name: CLUSTER_NAME
