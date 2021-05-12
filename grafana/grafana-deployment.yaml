@@ -23,6 +23,8 @@ spec:
           env:
             - name: GF_PATHS_PROVISIONING
               value: /var/lib/grafana/provisioning
+            - name: TZ
+              value: Asia/Shanghai
           resources:
             # keep request = limit to keep this container in guaranteed class
             limits:

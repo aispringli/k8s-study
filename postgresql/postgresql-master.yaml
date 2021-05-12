@@ -26,6 +26,8 @@ spec:
                 secretKeyRef:
                   name: postgresql-user-pwd
                   key: postgresql-pwd
+            - name: TZ
+              value: Asia/Shanghai
           ports:
             - containerPort: 5432
           volumeMounts:

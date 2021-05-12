@@ -26,6 +26,8 @@ spec:
           env:
             - name: SERVICE_PRECONDITION
               value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864"
+            - name: TZ
+              value: Asia/Shanghai
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -58,6 +60,8 @@ spec:
           env:
             - name: SERVICE_PRECONDITION
               value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
+            - name: TZ
+              value: Asia/Shanghai
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -88,4 +92,6 @@ spec:
           env:
             - name: SERVICE_PRECONDITION
               value: "hadoop-namenode:9000 hadoop-namenode:9870 hadoop-datanode:9864 hadoop-resourcemanager:8088"
+            - name: TZ
+              value: Asia/Shanghai
       restartPolicy: Always

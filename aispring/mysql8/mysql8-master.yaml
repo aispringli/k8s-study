@@ -55,6 +55,8 @@ spec:
                 secretKeyRef:
                   name: mysql-user-pwd
                   key: mysql-app-user-pwd
+            - name: TZ
+              value: Asia/Shanghai
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql

@@ -23,5 +23,7 @@ spec:
           env:
             - name: "JAVA_OPTS"
               value: "-Drocketmq.namesrv.addr=rocketmq:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+            - name: TZ
+              value: Asia/Shanghai
           ports:
             - containerPort: 8080          

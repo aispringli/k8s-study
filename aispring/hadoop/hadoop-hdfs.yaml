@@ -27,6 +27,8 @@ spec:
           env:
             - name: CLUSTER_NAME
               value: aispring
+            - name: TZ
+              value: Asia/Shanghai
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -57,4 +59,6 @@ spec:
           env:
             - name: SERVICE_PRECONDITION
               value: "hadoop-namenode:9870"
+            - name: TZ
+              value: Asia/Shanghai
       restartPolicy: Always

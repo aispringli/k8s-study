@@ -21,6 +21,9 @@ spec:
           image: gitlab/gitlab-runner:v13.1.0
           imagePullPolicy: IfNotPresent
           name: gitlab-runner
+          env: 
+            - name: TZ
+              value: Asia/Shanghai
           volumeMounts:
             - mountPath: /etc/gitlab-runner
               name: gitlab-runner-data
