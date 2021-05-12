@@ -58,7 +58,7 @@ spec:
             - containerPort: 9864
           env:
             - name: SERVICE_PRECONDITION
-              value: "hadoop-namenode:9870"
+              value: "hadoop-namenode:8020 hadoop-namenode:9870"
             - name: TZ
               value: Asia/Shanghai
       restartPolicy: Always
