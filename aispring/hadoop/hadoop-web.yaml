@@ -18,8 +18,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: hadoop-namenode
-              servicePort: http
+              service: 
+                name: hadoop-namenode
+                port: 
+                  name: http
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -41,8 +43,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: hadoop-datanode
-              servicePort: http
+              service: 
+                name: hadoop-datanode
+                port: 
+                  name: http
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -64,8 +68,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: hadoop-resourcemanager
-              servicePort: http
+              service: 
+                name: hadoop-resourcemanager
+                port: 
+                  name: http
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -87,8 +93,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: hadoop-nodemanager
-              servicePort: http
+              service: 
+                name: hadoop-nodemanager
+                port: 
+                  name: http
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -110,5 +118,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: hadoop-historyserver
-              servicePort: http
+              service: 
+                name: hadoop-historyserver
+                port: 
+                  name: http
