@@ -1,0 +1,114 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hadoop-namenode
+  namespace: aispring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+        - hadoop-namenode.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
+  rules:
+    - host: hadoop-namenode.aispring.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hadoop-namenode
+              servicePort: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hadoop-datanode
+  namespace: aispring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+        - hadoop-datanode.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
+  rules:
+    - host: hadoop-datanode.aispring.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hadoop-datanode
+              servicePort: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hadoop-resourcemanager
+  namespace: aispring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+        - hadoop-resourcemanager.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
+  rules:
+    - host: hadoop-resourcemanager.aispring.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hadoop-resourcemanager
+              servicePort: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hadoop-nodemanager
+  namespace: aispring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+        - hadoop-nodemanager.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
+  rules:
+    - host: hadoop-nodemanager.aispring.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hadoop-nodemanager
+              servicePort: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hadoop-historyserver
+  namespace: aispring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+        - hadoop-historyserver.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
+  rules:
+    - host: hadoop-historyserver.aispring.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hadoop-historyserver
+              servicePort: http
