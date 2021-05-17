@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hadoop-namenode
@@ -21,7 +21,7 @@ spec:
               serviceName: hadoop-namenode
               servicePort: http
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hadoop-datanode
@@ -44,7 +44,7 @@ spec:
               serviceName: hadoop-datanode
               servicePort: http
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hadoop-resourcemanager
@@ -67,7 +67,7 @@ spec:
               serviceName: hadoop-resourcemanager
               servicePort: http
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hadoop-nodemanager
@@ -90,7 +90,7 @@ spec:
               serviceName: hadoop-nodemanager
               servicePort: http
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hadoop-historyserver
