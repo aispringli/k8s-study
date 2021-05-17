@@ -16,7 +16,8 @@ spec:
     - host: hadoop-namenode.aispring.cloud
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
               service: 
                 name: hadoop-namenode
@@ -41,7 +42,8 @@ spec:
     - host: hadoop-datanode.aispring.cloud
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
               service: 
                 name: hadoop-datanode
@@ -66,7 +68,8 @@ spec:
     - host: hadoop-resourcemanager.aispring.cloud
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
               service: 
                 name: hadoop-resourcemanager
@@ -91,7 +94,8 @@ spec:
     - host: hadoop-nodemanager.aispring.cloud
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
               service: 
                 name: hadoop-nodemanager
@@ -116,7 +120,8 @@ spec:
     - host: hadoop-historyserver.aispring.cloud
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
               service: 
                 name: hadoop-historyserver
