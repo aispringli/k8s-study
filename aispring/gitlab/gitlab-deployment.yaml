@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: gitlab
-          image: sameersbn/gitlab:13.0.6
+          image: sameersbn/gitlab:13.12.1
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
