@@ -43,17 +43,17 @@ gitlab-runner register \
   --name "shared token" \
   --non-interactive \
   --url "http://git.aispring.cloud/" \
-  --tls-ca-file "/etc/gitlab-runner/aispring.cloud-cert/cert.cer" \
-  --tls-key-file "/etc/gitlab-runner/aispring.cloud-cert/cert.key" \
-  --registration-token "5QdZATg9B8s2Arsk-RyA" \
+  --tls-ca-file "/etc/gitlab-runner/aispring.cloud-cert/tls.crt" \
+  --tls-key-file "/etc/gitlab-runner/aispring.cloud-cert/tls.key" \
+  --registration-token "6aVqHLveyi3SHrf-rYFL" \
   --executor "kubernetes" \
-  --kubernetes-host "https://192.168.66.201:6443" \
+  --kubernetes-host "https://192.168.66.231:6443" \
   --kubernetes-cert-file "/etc/gitlab-runner/k8s-cert/apiserver.crt" \
   --kubernetes-key-file "/etc/gitlab-runner/k8s-cert/apiserver.key" \
   --kubernetes-ca-file "/etc/gitlab-runner/k8s-cert/ca.crt" \
-  --kubernetes-bearer_token "eyJhbGciOiJSUzI1NiIsImtpZCI6Ilc4NmtwN2JnSlRWNFRaYnR2MjNQVk9MTUtyQ0ZRQkVqSzBNNEFYb2kxWEkifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWw3aDVkIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI1YWQ5NGY2Yi0xMzcwLTRlZTctOGUzOC1kMDhkMWZlNGZiNTkiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06YWRtaW4tdXNlciJ9.SALJm7AVNhde3A8gytrlBRTfpv1sZpJgwnzbNDLQn2eC_SEwd0u6MEcnlSoSQ0kxfqwf_X4221SByjio_tCRuaYefUo6HUslTDELycWRq1j5--f3q8DvvVIRcuGDo7iofNIn3tEV32fIJplGrIsm0DXz2TYG66SK4-D1oYP6GwN4JyhtgDh1Rmx7wY6bI9fgOgW7VzuyfEeSiJ-5dZ4aiZ13jDMXwm0fKsHgu0V6xs8KZ1hDPZSOhESbsbROY4v6PoWLiWzjyt4j3Lwh1XmoYs2gUGVxP4DVUTSaAqZNi8vjodM5gR6V6lDQHpwCKPETvjFl-XyTuy7fybMdKbSOTA" \
+  --kubernetes-bearer_token "eyJhbGciOiJSUzI1NiIsImtpZCI6IjU2Tzg4RjdhZlFWQkpWbjFqZUJVUmVjZXI5MmthM3Y0cVAzTy1KV0h0ZFUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLXM0Z210Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI5YzMyZTVmZS02MTdiLTQyOWMtODhhOS1hNTc2NWM4YjFmYmYiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06YWRtaW4tdXNlciJ9.tFMxHNvOsG3PM4618X1TPKUcOtuEXFjf_VIz77hm_5CcxQpDdXk-lHFhnVnenVe_myRvkdaRQPTvyvbMol4DTrXXMBvfNovLSA36hKCUV60t8w_j5dP4L3rhTYFkpTjztveRb2BNLOOnfwYqRS1UhbRsbdyhhQ-cwFVJH5ackwNdtMtfEK0vtE20O3cbhNUMsDZzF8Tz1SkrHHofjCi7mTZY6lo5frtwELg3Cqd4WojFqfch9JLxjgwQQBvke0ZE" \
   --kubernetes-namespace "gitlab-runner"
---kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/.m2:/root/.m2" \
+  --kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/.m2:/root/.m2" \
   --kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/.npm:/root/.npm" \
   --kubernetes-volumes "/home/spring/data/k8s/gitlab-runner/data/app:/opt/app"
---kubernetes-volumes "/var/run/docker.sock:/var/run/docker.sock"
+  --kubernetes-volumes "/var/run/docker.sock:/var/run/docker.sock"

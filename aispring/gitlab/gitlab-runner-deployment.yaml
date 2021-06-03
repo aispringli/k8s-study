@@ -31,16 +31,8 @@ spec:
               name: gitlab-runner-docker
             - mountPath: /etc/gitlab-runner/k8s-cert/
               name: k8s-key
-            - mountPath: /etc/gitlab-runner/aispring.cloud-cert/cert.cer
-              valueFrom:
-                secretKeyRef:
-                  name: aispring-https-certs
-                  key: tls.crt
-            - mountPath: /etc/gitlab-runner/aispring.cloud-cert/cert.key
-              valueFrom:
-                secretKeyRef:
-                  name: aispring-https-certs
-                  key: tls.key
+            - mountPath: /etc/gitlab-runner/aispring.cloud-cert
+              name: aispring-https-certs
       restartPolicy: Always
       volumes:
         - name: gitlab-runner
@@ -55,3 +47,6 @@ spec:
         - name: k8s-key
           hostPath:
             path: /etc/kubernetes/pki
+        - name: aispring-https-certs
+          secret:           
+           secretName: aispring-https-certs
