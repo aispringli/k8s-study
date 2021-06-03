@@ -6,12 +6,54 @@ metadata:
 data:
   config.toml: |
     concurrent = 5
-
+    check_interval = 0
+    [session_server]
+      session_timeout = 1800
     [[runners]]
-      name = "Kubernetes Runner"
+      name = "shared token"
       url = "http://git.aispring.cloud/"
-      token = "5QdZATg9B8s2Arsk-RyA"
+      token = "CyQ6itZy9Wpq7uzmuqdA"
+      tls-ca-file = "/etc/gitlab-runner/aispring.cloud-cert/tls.crt"
+      tls-key-file = "/etc/gitlab-runner/aispring.cloud-cert/tls.key"
       executor = "kubernetes"
+      [runners.custom_build_dir]
+      [runners.cache]
+        [runners.cache.s3]
+        [runners.cache.gcs]
+        [runners.cache.azure]
       [runners.kubernetes]
-        namespace = "aispring"
+        host = "https://192.168.66.231:6443"
+        cert_file = "/etc/gitlab-runner/k8s-cert/apiserver.crt"
+        key_file = "/etc/gitlab-runner/k8s-cert/apiserver.key"
+        ca_file = "/etc/gitlab-runner/k8s-cert/ca.crt"
+        bearer_token_overwrite_allowed = false
+        bearer_token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjU2Tzg4RjdhZlFWQkpWbjFqZUJVUmVjZXI5MmthM3Y0cVAzTy1KV0h0ZFUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLXM0Z210Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI5YzMyZTVmZS02MTdiLTQyOWMtODhhOS1hNTc2NWM4YjFmYmYiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06YWRtaW4tdXNlciJ9.tFMxHNvOsG3PM4618X1TPKUcOtuEXFjf_VIz77hm_5CcxQpDdXk-lHFhnVnenVe_myRvkdaRQPTvyvbMol4DTrXXMBvfNovLSA36hKCUV60t8w_j5dP4L3rhTYFkpTjztveRb2BNLOOnfwYqRS1UhbRsbdyhhQ-cwFVJH5ackwNdtMtfEK0vtE20O3cbhNUMsDZzF8Tz1SkrHHofjCi7mTZY6lo5frtwELg3Cqd4WojFqfch9JLxjgwQQBvke0ZE"
         image = "busybox"
+        namespace = "gitlab-runner"
+        namespace_overwrite_allowed = ""
+        privileged = false
+        service_account_overwrite_allowed = ""
+        pod_annotations_overwrite_allowed = ""
+        [runners.kubernetes.affinity]
+        [runners.kubernetes.pod_security_context]
+        [[runners.kubernetes.volumes.host_path]]
+          name = "m2"
+          mount_path = "/root/.m2"
+          host_path = "/home/spring/data/k8s/gitlab-runner/data/.m2"
+        [[runners.kubernetes.volumes.host_path]]
+          name = "npm"
+          mount_path = "/root/.npm"
+          host_path = "/home/spring/data/k8s/gitlab-runner/data/.npm"
+        [[runners.kubernetes.volumes.host_path]]
+          name = "m2"
+          mount_path = "/root/.gradle"
+          host_path = "/home/spring/data/k8s/gitlab-runner/data/.gradle"
+        [[runners.kubernetes.volumes.host_path]]
+          name = "m2"
+          mount_path = "/opt/app"
+          host_path = "/home/spring/data/k8s/gitlab-runner/data/app"
+        [[runners.kubernetes.volumes.host_path]]
+          name = "m2"
+          mount_path = "/var/run/docker.sock"
+          host_path = "/var/run/docker.sock"
+        [runners.kubernetes.dns_config]
