@@ -37,6 +37,7 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 data:
+  http-redirect-code: "301"
 ---
 # Source: ingress-nginx/templates/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
