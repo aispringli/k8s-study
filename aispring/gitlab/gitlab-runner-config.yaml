@@ -45,15 +45,15 @@ data:
           mount_path = "/root/.npm"
           host_path = "/home/spring/data/k8s/gitlab-runner/data/.npm"
         [[runners.kubernetes.volumes.host_path]]
-          name = "m2"
+          name = "gradle"
           mount_path = "/root/.gradle"
           host_path = "/home/spring/data/k8s/gitlab-runner/data/.gradle"
         [[runners.kubernetes.volumes.host_path]]
-          name = "m2"
+          name = "app"
           mount_path = "/opt/app"
           host_path = "/home/spring/data/k8s/gitlab-runner/data/app"
         [[runners.kubernetes.volumes.host_path]]
-          name = "m2"
+          name = "docker"
           mount_path = "/var/run/docker.sock"
           host_path = "/var/run/docker.sock"
         [runners.kubernetes.dns_config]
