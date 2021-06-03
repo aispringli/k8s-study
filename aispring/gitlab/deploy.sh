@@ -1,3 +1,17 @@
+
+
+# 创建用户和数据库
+
+drop database gitlab;
+
+drop user gitlab;
+
+create user gitlab password '123456' superuser createrole createdb;
+
+grant postgres to gitlab ;
+
+# create database gitlab owner gitlab;
+
 kubectl delete -f gitlab-web.yaml
 kubectl delete -f gitlab-service.yaml
 kubectl delete -f gitlab-deployment.yaml

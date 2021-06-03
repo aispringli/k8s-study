@@ -18,10 +18,10 @@ spec:
       containers:
         - args:
             - run
-          image: gitlab/gitlab-runner:v13.1.0
+          image: gitlab/gitlab-runner
           imagePullPolicy: IfNotPresent
           name: gitlab-runner
-          env: 
+          env:
             - name: TZ
               value: Asia/Shanghai
           volumeMounts:
@@ -29,6 +29,18 @@ spec:
               name: gitlab-runner-data
             - mountPath: /var/run/docker.sock
               name: gitlab-runner-docker
+            - mountPath: /etc/gitlab-runner/k8s-cert/
+              name: k8s-key
+            - mountPath: /etc/gitlab-runner/aispring.cloud-cert/cert.cer
+              valueFrom:
+                secretKeyRef:
+                  name: aispring-https-certs
+                  key: tls.crt
+            - mountPath: /etc/gitlab-runner/aispring.cloud-cert/cert.key
+              valueFrom:
+                secretKeyRef:
+                  name: aispring-https-certs
+                  key: tls.key
       restartPolicy: Always
       volumes:
         - name: gitlab-runner
@@ -40,3 +52,6 @@ spec:
         - name: gitlab-runner-docker
           hostPath:
             path: /var/run/docker.sock
+        - name: k8s-key
+          hostPath:
+            path: /etc/kubernetes/pki
