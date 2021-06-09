@@ -10,8 +10,6 @@ spec:
     metadata:
       labels:
         app: nacos
-      annotations:
-        pod.alpha.kubernetes.io/initialized: "true"
     spec:
       containers:
         - name: nacos
@@ -29,6 +27,8 @@ spec:
           env:
             - name: NACOS_REPLICAS
               value: "1"
+            - name: SERVER_SERVLET_CONTEXTPATH
+              value: "/"
             - name: MYSQL_SERVICE_DB_NAME
               valueFrom:
                 configMapKeyRef:
