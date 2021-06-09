@@ -10,6 +10,8 @@ spec:
     metadata:
       labels:
         app: nacos
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
     spec:
       containers:
         - name: nacos

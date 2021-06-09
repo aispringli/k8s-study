@@ -2,9 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nacos-headless
+  name: nacos
+  namespace: aispring
   labels:
-    app: nacos-headless
+    app: nacos
 spec:
   type: ClusterIP
   clusterIP: None
