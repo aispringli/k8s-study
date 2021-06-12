@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deploryment
+kind: Deployment
 metadata:
   namespace: aispring
   name: blog
