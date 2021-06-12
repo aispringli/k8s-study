@@ -72,6 +72,10 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
+kubectl get csr
+
+ kubectl certificate approve csr-v2fk6
+
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
 kubectl taint nodes --all node.kubernetes.io/memory-pressure-
