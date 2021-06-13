@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: aispring
+  name: resource
+  labels: 
+    app: resource
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: resource
+  template: 
+    metadata: 
+      labels: 
+        app: resource
+    spec: 
+      containers:
+        - name: resource
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          env: 
+            - name: TZ
+              value: Asia/Shanghai
+          ports: 
+            - name: http
+              containerPort: 80
+          livenessProbe: 
+            httpGet: 
+              path: /
+              port: 80
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          volumeMounts:
+            - name: resource-data
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: resource-data
+          hostPath:
+            path: /data/k8s/resource/public
+---
+## Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: resource
+  namespace: aispring
+  labels:
+    app: resource
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: resource
+# web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: resource
+  namespace: aispring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+        - resource.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
+  rules:
+    - host: resource.aispring.cloud
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service: 
+                name: resource
+                port: 
+                  name: http
