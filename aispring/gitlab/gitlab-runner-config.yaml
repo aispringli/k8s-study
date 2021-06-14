@@ -58,6 +58,6 @@ data:
           host_path = "/var/run/docker.sock"
         [[runners.kubernetes.volumes.host_path]]
           name = "kubectl"
-          mount_path = "~/.kube"
-          host_path = "/"
+          mount_path = "/root/.kube"
+          host_path = "/.kube"
         [runners.kubernetes.dns_config]
