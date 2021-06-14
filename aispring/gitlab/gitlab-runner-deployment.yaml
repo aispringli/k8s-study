@@ -26,9 +26,13 @@ spec:
               value: Asia/Shanghai
           volumeMounts:
             - mountPath: /etc/gitlab-runner
-              name: gitlab-runner-data
+              name: gitlab-runner
             - mountPath: /var/run/docker.sock
               name: gitlab-runner-docker
+            - mountPath: /etc/gitlab-runner/k8s-cert/
+              name: k8s-key
+            - mountPath: /etc/gitlab-runner/aispring.cloud-cert
+              name: aispring-https-certs
       restartPolicy: Always
       volumes:
         - name: gitlab-runner
@@ -40,3 +44,9 @@ spec:
         - name: gitlab-runner-docker
           hostPath:
             path: /var/run/docker.sock
+        - name: k8s-key
+          hostPath:
+            path: /etc/kubernetes/pki
+        - name: aispring-https-certs
+          secret:           
+           secretName: aispring-https-certs
