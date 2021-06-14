@@ -15,6 +15,16 @@ spec:
       labels:
         app: gitlab-runner
     spec:
+      initContainers:
+        - name: gitlab-runner-init
+          image: busybox
+          imagePullPolicy: IfNotPresent        
+          command:
+            - sh
+            - "-c"
+            - |
+              git config --global http.sslVerify false
+              EOF
       containers:
         - args:
             - run
