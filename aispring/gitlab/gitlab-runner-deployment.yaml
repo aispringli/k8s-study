@@ -24,7 +24,6 @@ spec:
             - "-c"
             - |
               git config --global http.sslVerify false
-              EOF
       containers:
         - args:
             - run
