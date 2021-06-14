@@ -15,6 +15,7 @@ data:
       token = "CyQ6itZy9Wpq7uzmuqdA"
       tls-ca-file = "/etc/gitlab-runner/aispring.cloud-cert/tls.crt"
       tls-key-file = "/etc/gitlab-runner/aispring.cloud-cert/tls.key"
+      pre_clone_script = "git config --global http.sslVerify false"
       executor = "kubernetes"
       [runners.custom_build_dir]
       [runners.cache]
