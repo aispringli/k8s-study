@@ -134,4 +134,3 @@ spec:
         - name: gitlab-config
           configMap:
             name: gitlab-config
-        

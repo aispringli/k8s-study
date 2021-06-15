@@ -43,7 +43,7 @@ spec:
       volumes:
         - name: resource-data
           hostPath:
-            path: /data/k8s/resource/public
+            path: /out_data/k8s/resource/public
 ---
 ## Service
 apiVersion: v1
