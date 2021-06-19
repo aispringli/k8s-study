@@ -59,4 +59,4 @@ spec:
             name: grafana-config
         - name: grafana-data
           hostPath:
-            path: /home/spring/data/k8s/grafana/data
+            path: /out_data/k8s/grafana/data
