@@ -94,7 +94,7 @@ spec:
       volumes:
         - name: mysql-data
           hostPath:
-            path: /data/k8s/mysql8/data
+            path: /out_data/k8s/mysql8/data
         - name: mysql-initdb
           emptyDir: { }
         - name: mysql-config
