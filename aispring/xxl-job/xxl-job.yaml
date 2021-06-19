@@ -23,7 +23,7 @@ spec:
             - name: TZ
               value: Asia/Shanghai
             - name: PARAMS
-              value: "--spring.datasource.url=jdbc:mysql://mysql:3306/xxl_job?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true --server.context-path=/ --spring.datasource.username=root --spring.datasource.password=123456"
+              value: "--spring.datasource.url=jdbc:mysql://mysql:3306/xxl_job?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true --server.servlet.context-path==/ --spring.datasource.username=root --spring.datasource.password=123456"
           ports: 
             - name: http
               containerPort: 8080 
@@ -69,11 +69,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - xxl-job.aispring.cloud
+        - xxl.aispring.cloud
         - "*.aispring.cloud"
       secretName: aispring-https-certs
   rules:
-    - host: xxl-job.aispring.cloud
+    - host: xxl.aispring.cloud
       http:
         paths:
           - pathType: Prefix
