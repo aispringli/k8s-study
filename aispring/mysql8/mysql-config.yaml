@@ -11,3 +11,4 @@ data:
     lower_case_table_names=1
     skip_host_cache
     skip_name_resolve
+    max_connections = 1024
