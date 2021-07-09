@@ -82,6 +82,7 @@ spec:
           ports:
           - containerPort: 9100
             protocol: TCP
+            name: http
           # env:
           env:
             - name: TZ
