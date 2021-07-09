@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: aispring
+  labels:
+    app: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - image: prom/prometheus
+          name: grafana
+          imagePullPolicy: IfNotPresent
+          command:
+          - "/bin/prometheus"
+          args:
+          - "--config.file=/etc/prometheus/prometheus.yml"
+          - "--storage.tsdb.path=/prometheus"
+          - "--storage.tsdb.retention=24h"
+          ports:
+          - containerPort: 9090
+            protocol: TCP
+          # env:
+          env:
+            - name: GF_PATHS_PROVISIONING
+              value: /var/lib/grafana/provisioning
+            - name: TZ
+              value: Asia/Shanghai
+          resources:
+            # keep request = limit to keep this container in guaranteed class
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+          - mountPath: "/prometheus"
+            name: prometheus-data
+          - mountPath: "/etc/prometheus"
+            name: prometheus-config
+      volumes:
+        - name: prometheus-config
+          configMap:
+            name: prometheus-config
+        - name: prometheus-data
+          hostPath:
+            path: /out_data/k8s/prometheus/data
