@@ -1,3 +1,4 @@
+# prometheus server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +18,7 @@ spec:
     spec:
       containers:
         - image: prom/prometheus
-          name: grafana
+          name: prometheus
           imagePullPolicy: IfNotPresent
           command:
           - "/bin/prometheus"
@@ -54,3 +55,59 @@ spec:
         - name: prometheus-data
           hostPath:
             path: /out_data/k8s/prometheus/data
+---
+# node export 监控宿主机
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-node-exporter
+  namespace: aispring
+  labels:
+    app: prometheus-node-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-node-exporter
+  template:
+    metadata:
+      labels:
+        app: prometheus-node-exporter
+    spec:
+      containers:
+        - image: prom/node-exporter
+          name: prometheus-node-exporter
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 9100
+            protocol: TCP
+          # env:
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+          resources:
+            # keep request = limit to keep this container in guaranteed class
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+          - name: proc
+            mountPath: /host/proc
+          - name: sys
+            mountPath: /host/sys
+          - name: root
+            mountPath: /rootfs
+      volumes:
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: sys
+          hostPath:
+            path: /sys
+        - name: root
+          hostPath:
+            path: /
+---
