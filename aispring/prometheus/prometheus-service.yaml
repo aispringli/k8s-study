@@ -4,17 +4,17 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
   labels:
-    app: prometheus
-  name: prometheus
+    app: prometheus-server
+  name: prometheus-server
   namespace: aispring
 spec:
-  type: ContainerPort
+  type: containerPort
   ports:
     - name: http
       port: 80
       protocol: TCP
       targetPort: 9090
   selector:
-    app: prometheus
+    app: prometheus-server
 ---
 

@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus
+  name: prometheus-server
   namespace: aispring
   labels:
-    app: prometheus
+    app: prometheus-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prometheus
+      app: prometheus-server
   template:
     metadata:
       labels:
-        app: prometheus
+        app: prometheus-server
     spec:
       containers:
         - image: prom/prometheus
@@ -47,11 +47,11 @@ spec:
           - mountPath: "/prometheus"
             name: prometheus-data
           - mountPath: "/etc/prometheus"
-            name: prometheus-config
+            name: prometheus-server-config
       volumes:
-        - name: prometheus-config
+        - name: prometheus-server-config
           configMap:
-            name: prometheus-config
+            name: prometheus-server-config
         - name: prometheus-data
           hostPath:
             path: /out_data/k8s/prometheus/data
