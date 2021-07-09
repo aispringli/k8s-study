@@ -29,6 +29,7 @@ spec:
           ports:
           - containerPort: 9090
             protocol: TCP
+            name: http
           # env:
           env:
             - name: GF_PATHS_PROVISIONING
