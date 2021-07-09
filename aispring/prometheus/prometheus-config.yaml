@@ -16,4 +16,4 @@ data:
       # scheme defaults to 'http'.
       scrape_interval: 5s
       static_configs:
-      - targets: ['prometheus-node-exporter:9100']
+      - targets: ['prometheus-node-exporter']
