@@ -43,7 +43,7 @@ spec:
               memory: 100Mi
             requests:
               cpu: 100m
-              memory: 100Mi
+              memory: 200Mi
           volumeMounts:
           - mountPath: "/prometheus"
             name: prometheus-data
@@ -75,6 +75,7 @@ spec:
       labels:
         app: prometheus-node-exporter
     spec:
+      hostname: k8s
       containers:
         - image: prom/node-exporter
           name: prometheus-node-exporter
