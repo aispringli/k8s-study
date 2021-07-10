@@ -33,7 +33,7 @@ spec:
       port: 9100
       protocol: TCP
       targetPort: 9100
-     - name: mysql
+    - name: mysql
       port: 9104
       protocol: TCP
       targetPort: 9104
