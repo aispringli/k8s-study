@@ -61,24 +61,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-node-exporter
+  name: prometheus-exporter
   namespace: aispring
   labels:
-    app: prometheus-node-exporter
+    app: prometheus-exporter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prometheus-node-exporter
+      app: prometheus-exporter
   template:
     metadata:
       labels:
-        app: prometheus-node-exporter
+        app: prometheus-exporter
     spec:
       hostname: k8s
       containers:
-        - image: prom/node-exporter
-          name: prometheus-node-exporter
+        - name: node-exporter
+          image: prom/node-exporter
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 9100
@@ -103,6 +103,15 @@ spec:
             mountPath: /host/sys
           - name: root
             mountPath: /rootfs
+        - name: mysql-exporter
+          image: prom/mysqld-exporter
+          imagePullPolicy: Always
+          env:
+          - name: DATA_SOURCE_NAME
+            value: root:123456@(mysql:3306)/
+          ports:
+          - containerPort: 9104
+            protocol: TCP
       volumes:
         - name: proc
           hostPath:

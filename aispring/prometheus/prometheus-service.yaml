@@ -23,17 +23,21 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
   labels:
-    app: prometheus-node-exporter
-  name: prometheus-node-exporter
+    app: prometheus-exporter
+  name: prometheus-exporter
   namespace: aispring
 spec:
   type: NodePort
   ports:
-    - name: http
-      port: 80
+    - name: node
+      port: 9100
       protocol: TCP
       targetPort: 9100
+     - name: mysql
+      port: 9104
+      protocol: TCP
+      targetPort: 9104
   selector:
-    app: prometheus-node-exporter
+    app: prometheus-exporter
 ---
 
