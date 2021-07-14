@@ -55,6 +55,7 @@ metadata:
     app: resource
 spec:
   type: ClusterIP
+  clusterIP: None
   ports:
     - name: http
       port: 80

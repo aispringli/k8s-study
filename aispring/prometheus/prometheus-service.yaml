@@ -8,7 +8,8 @@ metadata:
   name: prometheus-server
   namespace: aispring
 spec:
-  type: NodePort
+  type: ClusterIP
+  clusterIP: None
   ports:
     - name: http
       port: 80
@@ -27,7 +28,8 @@ metadata:
   name: prometheus-exporter
   namespace: aispring
 spec:
-  type: NodePort
+  type: ClusterIP
+  clusterIP: None
   ports:
     - name: node
       port: 9100

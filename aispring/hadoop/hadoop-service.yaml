@@ -41,14 +41,14 @@ metadata:
   namespace: aispring
   name: hadoop-resourcemanager
 spec:
-  type: NodePort
+  type: ClusterIP
+  clusterIP: None
   selector:
     name: hadoop-resourcemanager
   ports:
     - name: http
       port: 8088
       targetPort: 8088
-      nodePort: 38088
 ---
 # nodemanager
 apiVersion: v1
@@ -57,14 +57,14 @@ metadata:
   namespace: aispring
   name: hadoop-nodemanager
 spec:
-  type: NodePort
+  type: ClusterIP
+  clusterIP: None
   selector:
     name: hadoop-nodemanager
   ports:
     - name: http
       port: 8042
       targetPort: 8042
-      nodePort: 38042
 ---
 # historyserver
 apiVersion: v1
@@ -73,12 +73,12 @@ metadata:
   namespace: aispring
   name: hadoop-historyserver
 spec:
-  type: NodePort
+  type: ClusterIP
+  clusterIP: None
   selector:
     name: hadoop-historyserver
   ports:
     - name: http
       port: 8188
       targetPort: 8188
-      nodePort: 38188
 ---

@@ -8,7 +8,8 @@ metadata:
   name: grafana
   namespace: aispring
 spec:
-  type: NodePort
+  type: ClusterIP
+  clusterIP: None
   ports:
     - name: http
       port: 80
