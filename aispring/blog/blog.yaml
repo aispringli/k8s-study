@@ -48,7 +48,6 @@ metadata:
     app: blog
 spec:
   type: ClusterIP
-  clusterIP: None
   ports:
     - name: http
       port: 80

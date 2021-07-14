@@ -42,7 +42,6 @@ metadata:
   name: hadoop-resourcemanager
 spec:
   type: ClusterIP
-  clusterIP: None
   selector:
     name: hadoop-resourcemanager
   ports:
@@ -58,7 +57,6 @@ metadata:
   name: hadoop-nodemanager
 spec:
   type: ClusterIP
-  clusterIP: None
   selector:
     name: hadoop-nodemanager
   ports:
@@ -74,7 +72,6 @@ metadata:
   name: hadoop-historyserver
 spec:
   type: ClusterIP
-  clusterIP: None
   selector:
     name: hadoop-historyserver
   ports:
