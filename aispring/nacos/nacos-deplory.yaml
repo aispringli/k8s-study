@@ -6,6 +6,7 @@ metadata:
   labels:
     app: nacos
 spec:
+  serviceName: nacos
   replicas: 1
   selector:
     matchLabels:
