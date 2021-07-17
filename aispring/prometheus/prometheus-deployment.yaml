@@ -109,6 +109,8 @@ spec:
           env:
           - name: DATA_SOURCE_NAME
             value: root:123456@(mysql:3306)/
+           - name: TZ
+              value: Asia/Shanghai
           ports:
           - containerPort: 9104
             protocol: TCP
