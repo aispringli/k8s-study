@@ -62,3 +62,5 @@ spec:
               value: "8848"
             - name: PREFER_HOST_MODE
               value: "hostname"
+            - name:  nacos.naming.data.warmup
+              value: false
