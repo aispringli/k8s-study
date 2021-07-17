@@ -1,12 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: nacos
   namespace: aispring
   labels:
     app: nacos
 spec:
-  serviceName: nacos
   replicas: 1
   selector:
     matchLabels:
