@@ -8,8 +8,8 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 9200
-      nodePort: 9200
+      port: 5601
+      nodePort: 5601
       targetPort: http
   type: NodePort
   selector:
