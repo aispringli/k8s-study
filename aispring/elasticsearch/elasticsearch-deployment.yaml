@@ -25,7 +25,10 @@ spec:
             - name: cluster.name
               value: k8s
             - name: node.name
-              value: elasticsearch
+              value: master
+            - name: cluster.initial_master_nodes
+              value: master
+
           ports:
           - containerPort: 9200
             name: rest
