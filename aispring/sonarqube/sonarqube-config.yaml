@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sonarqube-config
+  namespace: aispring
+data:
+  jdbc-username: sonarqube
+  jdbc-password: sonarqube
+  jdbc-url: "jdbc:postgresql://postgres:5432/sonar"
