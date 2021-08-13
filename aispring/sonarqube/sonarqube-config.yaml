@@ -6,4 +6,4 @@ metadata:
 data:
   jdbc-username: sonarqube
   jdbc-password: sonarqube
-  jdbc-url: "jdbc:postgresql://postgres:5432/sonar"
+  jdbc-url: "jdbc:postgresql://postgresql:5432/sonar"
