@@ -40,7 +40,7 @@ spec:
             name: gitlab-runner
         - name: gitlab-runner-data
           hostPath:
-            path: /home/spring/data/k8s/gitlab-runner/data
+            path: /out_data/k8s/gitlab-runner/data
         - name: gitlab-runner-docker
           hostPath:
             path: /var/run/docker.sock

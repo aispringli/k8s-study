@@ -36,4 +36,4 @@ spec:
       volumes:
         - name: postgresql-data
           hostPath:
-            path: /home/spring/data/k8s/postgresql/data
+            path: /out_data/k8s/postgresql/data

@@ -90,7 +90,7 @@ spec:
       volumes:
         - name: data
           hostPath:
-            path: /home/spring/data/k8s/redis/data
+            path: /out_data/k8s/redis/data
         - name: sys
           hostPath:
             path: /sys

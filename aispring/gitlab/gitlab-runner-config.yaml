@@ -40,19 +40,19 @@ data:
         [[runners.kubernetes.volumes.host_path]]
           name = "m2"
           mount_path = "/root/.m2"
-          host_path = "/home/spring/data/k8s/gitlab-runner/data/.m2"
+          host_path = "/out_data/k8s/gitlab-runner/data/.m2"
         [[runners.kubernetes.volumes.host_path]]
           name = "npm"
           mount_path = "/root/.npm"
-          host_path = "/home/spring/data/k8s/gitlab-runner/data/.npm"
+          host_path = "/out_data/k8s/gitlab-runner/data/.npm"
         [[runners.kubernetes.volumes.host_path]]
           name = "gradle"
           mount_path = "/root/.gradle"
-          host_path = "/home/spring/data/k8s/gitlab-runner/data/.gradle"
+          host_path = "/out_data/k8s/gitlab-runner/data/.gradle"
         [[runners.kubernetes.volumes.host_path]]
           name = "app"
           mount_path = "/opt/app"
-          host_path = "/home/spring/data/k8s/gitlab-runner/data/app"
+          host_path = "/out_data/k8s/gitlab-runner/data/app"
         [[runners.kubernetes.volumes.host_path]]
           name = "docker"
           mount_path = "/var/run/docker.sock"

@@ -17,7 +17,7 @@ kubectl delete -f gitlab-service.yaml
 kubectl delete -f gitlab-deployment.yaml
 kubectl delete -f gitlab-secret.yaml
 kubectl delete -f gitlab-config.yaml
-rm -rf /home/spring/data/k8s/gitlab/data
+rm -rf /out_data/k8s/gitlab/data
 
 kubectl create -f gitlab-config.yaml
 kubectl create -f gitlab-secret.yaml

@@ -56,7 +56,7 @@ spec:
       volumes:
         - name: elasticsearch-data
           hostPath:
-            path: /home/spring/data/k8s/elasticsearch/data
+            path: /out_data/k8s/elasticsearch/data
         - name: elasticsearch-config
           configMap:
             name: elasticsearch-config

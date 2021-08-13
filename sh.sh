@@ -88,13 +88,13 @@ kubectl -n rook-ceph delete pod rook-discover-6c6wx --force --grace-period=0
 
 sudo mkfs -t ext4 /dev/sda
 
-sudo mount -t ext4 /dev/sda1 /home/spring/data
+sudo mount -t ext4 /dev/sda1 /out_data
 
 ls -l /dev/disk/by-uuid/
 
 sudo blkid /dev/sda1
 
-/dev/disk/by-uuid/14957be2-312f-4e3d-9030-23e919b7eaf1 /home/spring/data ext4 defaults 0 0
+/dev/disk/by-uuid/14957be2-312f-4e3d-9030-23e919b7eaf1 /out_data ext4 defaults 0 0
 
 kubectl exec -ti gitlab-6985b874bd-vsq6d -n aispring -- /bin/sh
 
