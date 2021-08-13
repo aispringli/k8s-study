@@ -37,6 +37,10 @@ spec:
                 configMapKeyRef:
                   name: sonarqube-config
                   key: jdbc-url
+            - name: SONAR_SEARCH_HOST
+              value: elasticsearch
+            - name: SONAR_SEARCH_PORT
+              value: 9200
           ports:
           - containerPort: 9000
             name: http
