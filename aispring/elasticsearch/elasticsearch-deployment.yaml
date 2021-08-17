@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: elasticsearch
-          image: elasticsearch:7.10.1
+          image: elasticsearch:7.14.0
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
