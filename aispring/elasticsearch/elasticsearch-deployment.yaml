@@ -28,7 +28,9 @@ spec:
               value: master
             - name: cluster.initial_master_nodes
               value: master
-
+          resources:
+            limits:
+              memory: 3Gi
           ports:
           - containerPort: 9200
             name: rest
