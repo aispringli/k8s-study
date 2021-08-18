@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: sonarqube
-          image: sonarqube
+          image: registry.cn-shanghai.aliyuncs.com/aispring/sonarqube
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
@@ -41,6 +41,8 @@ spec:
               value: elasticsearch
             - name: SONAR_SEARCH_PORT
               value: "9200"
+            - name: SONAR_SEARCH_EXTERNALENABLE
+              value: "true"
           ports:
           - containerPort: 9000
             name: http
