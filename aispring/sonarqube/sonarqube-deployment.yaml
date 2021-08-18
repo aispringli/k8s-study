@@ -61,9 +61,6 @@ spec:
             periodSeconds: 30
             failureThreshold: 6
           volumeMounts:
-            - mountPath: /opt/sonarqube/conf
-              name: sonarqube-data
-              subPath: conf
             - mountPath: /opt/sonarqube/data
               name: sonarqube-data
               subPath: data
