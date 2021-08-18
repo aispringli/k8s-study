@@ -127,7 +127,7 @@ spec:
       volumes:
         - name: gitlab-data
           hostPath:
-            path: /out_data/k8s/gitlab/data
+            path: /home/spring/data/k8s_bak/gitlab/data
         - name: gitlab-pwd
           configMap:
             name: gitlab-pwd
