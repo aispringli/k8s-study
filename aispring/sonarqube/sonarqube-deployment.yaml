@@ -77,7 +77,7 @@ spec:
       volumes:
         - name: sonarqube-data
           hostPath:
-            path: /out_data/k8s/sonarqube/data
+            path: /out_data/k8s/sonarqube
         - name: sonarqube-config
           configMap:
             name: sonarqube-config
