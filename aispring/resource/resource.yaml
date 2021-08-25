@@ -78,11 +78,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - resource.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - resource.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: resource.aispring.cloud
+    - host: resource.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix

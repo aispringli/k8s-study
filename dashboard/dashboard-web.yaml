@@ -11,11 +11,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - k8s-dashboard.aispring.cloud
-        - "*.aispring.cloud"
+        - k8s-dashboard.local.aispring.cloud
+        - "*.local.aispring.cloud"
       secretName: kubernetes-dashboard-certs
   rules:
-    - host: k8s-dashboard.aispring.cloud
+    - host: k8s-dashboard.local.aispring.cloud
       http:
         paths:
           - path: /

@@ -38,11 +38,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - nacos.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - nacos.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: nacos.aispring.cloud
+    - host: nacos.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix

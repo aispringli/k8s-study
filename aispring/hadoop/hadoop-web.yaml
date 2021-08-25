@@ -9,11 +9,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - hadoop-namenode.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - hadoop-namenode.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: hadoop-namenode.aispring.cloud
+    - host: hadoop-namenode.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix
@@ -35,11 +35,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - hadoop-datanode.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - hadoop-datanode.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: hadoop-datanode.aispring.cloud
+    - host: hadoop-datanode.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix
@@ -61,11 +61,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - hadoop-resourcemanager.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - hadoop-resourcemanager.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: hadoop-resourcemanager.aispring.cloud
+    - host: hadoop-resourcemanager.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix
@@ -87,11 +87,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - hadoop-nodemanager.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - hadoop-nodemanager.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: hadoop-nodemanager.aispring.cloud
+    - host: hadoop-nodemanager.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix
@@ -113,11 +113,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - hadoop-historyserver.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - hadoop-historyserver.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: hadoop-historyserver.aispring.cloud
+    - host: hadoop-historyserver.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix

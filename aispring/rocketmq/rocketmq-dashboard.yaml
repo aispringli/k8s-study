@@ -39,11 +39,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - rocketmq-dashboard.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - rocketmq-dashboard.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: rocketmq-dashboard.aispring.cloud
+    - host: rocketmq-dashboard.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix

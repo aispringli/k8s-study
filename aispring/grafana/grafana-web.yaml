@@ -9,11 +9,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - grafana.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - grafana.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: grafana.aispring.cloud
+    - host: grafana.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix

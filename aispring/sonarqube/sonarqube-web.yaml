@@ -12,11 +12,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - sonarqube.aispring.cloud
-        - "*.aispring.cloud"
-      secretName: aispring-https-certs
+        - sonarqube.local.aispring.cloud
+        - "*.local.aispring.cloud"
+      secretName: local-aispring-https-certs
   rules:
-    - host: sonarqube.aispring.cloud
+    - host: sonarqube.local.aispring.cloud
       http:
         paths:
           - pathType: Prefix
