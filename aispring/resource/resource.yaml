@@ -81,7 +81,7 @@ spec:
         - resource.local.aispring.cloud
         - "*.local.aispring.cloud"
       secretName: local-aispring-https-certs
-     - hosts:
+    - hosts:
         - resource.aispring.cloud
         - "*.aispring.cloud"
       secretName: aispring-https-certs
