@@ -40,11 +40,11 @@ spec:
                 configMapKeyRef:
                   name: gitlab-config
                   key: gitlab-root-email
-            # - name: GITLAB_HOST
-            #   valueFrom:
-            #     configMapKeyRef:
-            #       name: gitlab-config
-            #       key: gitlab-host
+            - name: GITLAB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: gitlab-config
+                  key: gitlab-host
             - name: GITLAB_PORT
               value: "80"
             - name: GITLAB_SSH_PORT

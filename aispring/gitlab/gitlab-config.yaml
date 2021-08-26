@@ -11,4 +11,5 @@ data:
   postgresql-port: "5432"
   postgresql-user: gitlab
   postgresql-db: gitlab
+  gitlab-host: git.aispring.cloud
   gitlab-root-email: 3377939225@qq.com
