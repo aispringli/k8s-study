@@ -12,11 +12,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - kibana.local.aispring.cloud
-        - "*.local.aispring.cloud"
-      secretName: local-aispring-https-certs
+        - kibana.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
   rules:
-    - host: kibana.local.aispring.cloud
+    - host: kibana.aispring.cloud
       http:
         paths:
           - pathType: Prefix

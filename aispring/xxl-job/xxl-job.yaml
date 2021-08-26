@@ -69,11 +69,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - xxl.local.aispring.cloud
-        - "*.local.aispring.cloud"
-      secretName: local-aispring-https-certs
+        - xxl.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
   rules:
-    - host: xxl.local.aispring.cloud
+    - host: xxl.aispring.cloud
       http:
         paths:
           - pathType: Prefix

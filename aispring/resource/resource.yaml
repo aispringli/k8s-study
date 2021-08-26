@@ -81,8 +81,22 @@ spec:
         - resource.local.aispring.cloud
         - "*.local.aispring.cloud"
       secretName: local-aispring-https-certs
+     - hosts:
+        - resource.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
   rules:
     - host: resource.local.aispring.cloud
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service: 
+                name: resource
+                port: 
+                  name: http
+    - host: resource.aispring.cloud
       http:
         paths:
           - pathType: Prefix
