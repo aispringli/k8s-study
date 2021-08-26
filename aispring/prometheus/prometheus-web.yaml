@@ -12,6 +12,7 @@ spec:
         - prometheus.local.aispring.cloud
         - "*.local.aispring.cloud"
       secretName: local-aispring-https-certs
+  rules:
     - host: prometheus.local.aispring.cloud
       http:
         paths:
