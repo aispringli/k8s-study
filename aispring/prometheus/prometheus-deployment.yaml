@@ -45,10 +45,10 @@ spec:
               cpu: 100m
               memory: 100Mi
           volumeMounts:
-          - mountPath: "/prometheus"
-            name: prometheus-data
-          - mountPath: "/etc/prometheus"
-            name: prometheus-server-config
+            - mountPath: "/prometheus"
+              name: prometheus-data
+            - mountPath: "/etc/prometheus"
+              name: prometheus-server-config
       volumes:
         - name: prometheus-server-config
           configMap:
@@ -109,8 +109,8 @@ spec:
           env:
           - name: DATA_SOURCE_NAME
             value: root:123456@(mysql:3306)/
-           - name: TZ
-              value: Asia/Shanghai
+          - name: TZ
+            value: Asia/Shanghai
           ports:
           - containerPort: 9104
             protocol: TCP
