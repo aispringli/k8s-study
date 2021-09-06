@@ -12,11 +12,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - git.local.aispring.cloud
-        - "*.local.aispring.cloud"
-      secretName: local-aispring-https-certs
+        - git.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
   rules:
-    - host: git.local.aispring.cloud
+    - host: git.aispring.cloud
       http:
         paths:
           - pathType: Prefix

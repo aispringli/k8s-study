@@ -37,12 +37,12 @@ kubectl -n aispring exec -it $(kubectl -n aispring get pods | grep gitlab | awk 
 
 gitlab-runner register
 
-https://git.local.aispring.cloud/
+https://git.aispring.cloud/
 
 gitlab-runner register \
   --name "shared token" \
   --non-interactive \
-  --url "http://git.local.aispring.cloud/" \
+  --url "http://git.aispring.cloud/" \
   --tls-ca-file "/etc/gitlab-runner/aispring.cloud-cert/tls.crt" \
   --tls-key-file "/etc/gitlab-runner/aispring.cloud-cert/tls.key" \
   --registration-token "6aVqHLveyi3SHrf-rYFL" \

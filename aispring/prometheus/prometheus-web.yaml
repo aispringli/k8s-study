@@ -9,11 +9,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - prometheus.local.aispring.cloud
-        - "*.local.aispring.cloud"
-      secretName: local-aispring-https-certs
+        - prometheus.aispring.cloud
+        - "*.aispring.cloud"
+      secretName: aispring-https-certs
   rules:
-    - host: prometheus.local.aispring.cloud
+    - host: prometheus.aispring.cloud
       http:
         paths:
           - pathType: Prefix

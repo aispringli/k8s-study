@@ -11,7 +11,7 @@ data:
       session_timeout = 1800
     [[runners]]
       name = "shared token"
-      url = "https://git.local.aispring.cloud/"
+      url = "https://git.aispring.cloud/"
       token = "CyQ6itZy9Wpq7uzmuqdA"
       tls-ca-file = "/etc/gitlab-runner/aispring.cloud-cert/tls.crt"
       tls-key-file = "/etc/gitlab-runner/aispring.cloud-cert/tls.key"
