@@ -65,3 +65,5 @@ spec:
               value: "hostname"
             - name:  nacos.naming.data.warmup
               value: "false"
+            - name:  management.endpoints.web.exposure.include
+              value: "*"
