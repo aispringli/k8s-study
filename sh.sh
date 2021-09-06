@@ -109,6 +109,8 @@ kubectl taint nodes --all node.kubernetes.io/memory-pressure-
 
 kubectl taint nodes --all node.kubernetes.io/memory-pressure
 
+kubectl taint nodes --all node.kubernetes.io/disk-pressure-
+
 
  cat /dev/zero > /dev/sdb
  
